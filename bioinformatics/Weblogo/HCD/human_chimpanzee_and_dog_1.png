@@ -1,0 +1,1137 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>WebLogo 3 - Create </title>
+    <!--base responsive code-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--original meta data-->
+    <meta name="author" content="Gavin E. Crooks">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="logo.css">
+    <title>WebLogo Create Layout Template</title>
+    <!--styling for error message for sequence input-->
+    <style type="text/css">
+    .error {
+        color: #900;
+        border-left: red solid +4pt;
+    }
+    
+    .err_msg {
+        color: #900;
+    }
+    
+    .err_msg .btn {
+        color: #000;
+    }
+    </style>
+    <!--jquery libraries-->
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <!-- ========Start Bootstrap dependencies ==========-->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <!-- ========= end Bootstrap dependencies======= -->
+
+</head>
+
+<body>
+    <!--Navigation-->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="./">WebLogo 3</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="./">home</a></li>
+                    <li class="active"><a href="create.cgi">create</a></li>
+                    <li><a href="examples.html">examples</a></li>
+                    <li><a href="manual.html">manual</a></li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+    <!--end Navigation-->
+    <div class="container-fluid">
+        <!--start fluid container for responsive content-->
+        <div class="row">
+            <!--outermost row container-->
+            <h1><p class="text-center"> WebLogo 3: Create</p></h1>
+            <form enctype="multipart/form-data" action="create.cgi" name="logoform" method="post">
+                <!--start WebLogo form-->
+                <div class="row">
+                    <!--open sequence data form row-->
+                    <div class="col-sm-1">
+                        <br>
+                    </div>
+                    <!--left margin column for sequence data form -->
+                    <div class="col-sm-10">
+                        <!--central column for sequence data form-->
+                        <div class="thumbnail clearfix row" id="thumbnail-1">
+                            <!--open thumbnail 1 div-->
+                            <h2> Sequence Data Input:</h2>
+                            <hr>
+                            <div class="form-group clearfix">
+                                <!--start clearfix div for browse & open buttons-->
+                                <div class="col-sm-4">
+
+                                    <input type="file" name="sequences_file"></input>
+                                        </div> 
+
+                                <div class="col-sm-2"> <!--center spacing div-->
+                                </div>
+
+                                  <!--start URL download container div-->
+                                <div class="form-group col-sm-4" id="URL-upload">
+                                    
+                                   <label>URL:</label>
+                    <input type="text" name="sequences_url" placeholder="URL of sequences" id="url-upload" value="">
+                </div>                                  
+                                                        
+                                </div> <!--end URL download container div-->
+                            </div> <!--start clearfix div for browse & open buttons-->
+                           
+                            <div class="form-group">
+                                <!--open paste seqence data textbox div-->
+                                <label class="err_msg">ERROR: ('alphabet', 'Unknown sequence type.') <br /><input style='float:right; font-size:small' type='submit' name='cmd_validate' value='Clear Error' /> </label>
+                                <textarea type="text" class="form-control" id="sequence-data" name="sequences" style="width:100%" placeholder="Or Paste Sequence Data Here">P0      -      A      C      G      T
+01      0      3      0      0      0      A
+02      0      0      0      0      3      T
+03      0      0      0      3      0      G
+04      0      3      0      0      0      A
+05      0      3      0      0      0      A
+06      0      0      3      0      0      C
+07      0      0      0      3      0      G
+08      0      3      0      0      0      A
+09      0      3      0      0      0      A
+10      0      3      0      0      0      A
+11      0      3      0      0      0      A
+12      0      0      0      0      3      T
+13      0      0      3      0      0      C
+14      0      0      0      0      3      T
+15      0      2      0      1      0      R
+16      0      0      0      0      3      T
+17      0      0      0      0      3      T
+18      0      0      3      0      0      C
+19      0      0      0      3      0      G
+20      0      0      3      0      0      C
+21      0      0      0      0      3      T
+22      0      0      0      0      3      T
+23      0      0      3      0      0      C
+24      0      2      0      0      1      W
+25      0      0      0      0      3      T
+26      0      0      0      0      3      T
+27      0      0      3      0      0      C
+28      0      1      0      2      0      R
+29      0      0      2      0      1      Y
+30      0      0      0      0      3      T
+31      0      0      0      3      0      G
+32      0      0      3      0      0      C
+33      0      0      3      0      0      C
+34      0      0      3      0      0      C
+35      0      0      3      0      0      C
+36      0      0      3      0      0      C
+37      0      2      0      0      1      W
+38      0      0      3      0      0      C
+39      0      3      0      0      0      A
+40      0      3      0      0      0      A
+41      0      0      0      0      3      T
+42      0      1      2      0      0      M
+43      0      1      2      0      0      M
+44      0      0      0      0      3      T
+45      0      3      0      0      0      A
+46      0      0      0      3      0      G
+47      0      0      0      3      0      G
+48      0      0      2      0      1      Y
+49      0      0      2      0      1      Y
+50      0      0      0      0      3      T
+51      0      2      1      0      0      M
+52      0      0      3      0      0      C
+53      0      0      3      0      0      C
+54      0      0      2      0      1      Y
+55      0      1      0      2      0      R
+56      0      0      2      0      1      Y
+57      0      0      2      0      1      Y
+58      0      0      0      3      0      G
+59      0      0      2      0      1      Y
+60      0      2      0      1      0      R
+61      0      0      0      3      0      G
+62      0      0      0      0      3      T
+63      0      3      0      0      0      A
+64      0      0      3      0      0      C
+65      0      0      0      0      3      T
+66      0      1      0      2      0      R
+67      0      3      0      0      0      A
+68      0      0      0      0      3      T
+69      0      0      3      0      0      C
+70      0      2      0      1      0      R
+71      0      0      0      0      3      T
+72      0      0      1      0      2      Y
+73      0      1      2      0      0      M
+74      0      0      0      0      3      T
+75      0      3      0      0      0      A
+76      0      0      0      0      3      T
+77      0      0      0      0      3      T
+78      0      0      2      0      1      Y
+79      0      0      3      0      0      C
+80      0      0      3      0      0      C
+81      0      0      2      0      1      Y
+82      0      0      2      0      1      Y
+83      0      0      3      0      0      C
+84      0      0      1      0      2      Y
+85      0      1      2      0      0      M
+86      0      0      0      0      3      T
+87      0      2      0      0      1      W
+88      0      0      1      0      2      Y
+89      0      0      0      0      3      T
+90      0      1      0      2      0      R
+91      0      1      0      1      1      D
+92      0      0      0      0      3      T
+93      0      0      3      0      0      C
+94      0      0      3      0      0      C
+95      0      0      3      0      0      C
+96      0      1      2      0      0      M
+97      0      3      0      0      0      A
+98      0      0      3      0      0      C
+99      0      1      1      0      1      H
+100      0      0      1      0      2      Y
+101      0      0      3      0      0      C
+102      0      0      2      0      1      Y
+103      0      3      0      0      0      A
+104      0      2      0      1      0      R
+105      0      2      0      0      1      W
+106      0      0      2      0      1      Y
+107      0      2      0      1      0      R
+108      0      0      1      0      2      Y
+109      0      0      3      0      0      C
+110      0      0      0      0      3      T
+111      0      1      2      0      0      M
+112      0      3      0      0      0      A
+113      0      0      0      0      3      T
+114      0      0      3      0      0      C
+115      0      3      0      0      0      A
+116      0      3      0      0      0      A
+117      0      0      2      0      1      Y
+118      0      3      0      0      0      A
+119      0      3      0      0      0      A
+120      0      0      2      0      1      Y
+121      0      0      3      0      0      C
+122      0      0      0      3      0      G
+123      0      2      0      1      0      R
+124      0      0      2      0      1      Y
+125      0      0      0      0      3      T
+126      0      3      0      0      0      A
+127      0      3      0      0      0      A
+128      0      0      0      0      3      T
+129      0      0      2      0      1      Y
+130      0      2      0      0      1      W
+131      0      0      3      0      0      C
+132      0      0      3      0      0      C
+133      0      3      0      0      0      A
+134      0      0      2      0      1      Y
+135      0      0      2      0      1      Y
+136      0      0      3      0      0      C
+137      0      3      0      0      0      A
+138      0      2      0      1      0      R
+139      0      0      3      0      0      C
+140      0      3      0      0      0      A
+141      0      3      0      0      0      A
+142      0      0      0      0      3      T
+143      0      0      0      3      0      G
+144      0      3      0      0      0      A
+145      0      0      3      0      0      C
+146      0      0      0      0      3      T
+147      0      3      0      0      0      A
+148      0      3      0      0      0      A
+149      0      0      0      0      3      T
+150      0      0      1      0      2      Y
+151      0      1      2      0      0      M
+152      0      3      0      0      0      A
+153      0      3      0      0      0      A
+154      0      0      3      0      0      C
+155      0      0      0      0      3      T
+156      0      2      0      1      0      R
+157      0      3      0      0      0      A
+158      0      0      3      0      0      C
+159      0      1      2      0      0      M
+160      0      0      0      0      3      T
+161      0      0      3      0      0      C
+162      0      3      0      0      0      A
+163      0      3      0      0      0      A
+164      0      3      0      0      0      A
+165      0      3      0      0      0      A
+166      0      0      3      0      0      C
+167      0      3      0      0      0      A
+168      0      3      0      0      0      A
+169      0      3      0      0      0      A
+170      0      0      0      0      3      T
+171      0      2      0      1      0      R
+172      0      2      1      0      0      M
+173      0      0      0      0      3      T
+174      0      3      0      0      0      A
+175      0      2      0      1      0      R
+176      0      0      3      0      0      C
+177      0      1      1      0      1      H
+178      0      3      0      0      0      A
+179      0      0      0      0      3      T
+180      0      2      0      0      1      W
+181      0      0      3      0      0      C
+182      0      3      0      0      0      A
+183      0      0      2      0      1      Y
+184      0      3      0      0      0      A
+185      0      2      0      1      0      R
+186      0      0      3      0      0      C
+187      0      2      1      0      0      M
+188      0      1      2      0      0      M
+189      0      1      0      0      2      W
+190      0      3      0      0      0      A
+191      0      3      0      0      0      A
+192      0      2      0      1      0      R
+193      0      0      0      3      0      G
+194      0      0      0      3      0      G
+195      0      3      0      0      0      A
+196      0      0      3      0      0      C
+197      0      0      0      3      0      G
+198      0      3      0      0      0      A
+199      0      3      0      0      0      A
+200      0      0      3      0      0      C
+201      0      0      3      0      0      C
+202      0      0      0      0      3      T
+203      0      0      0      3      0      G
+204      0      3      0      0      0      A
+205      0      0      0      1      2      K
+206      0      0      3      0      0      C
+207      0      0      0      0      3      T
+208      0      0      3      0      0      C
+209      0      0      0      0      3      T
+210      0      0      2      0      1      Y
+211      0      3      0      0      0      A
+212      0      0      0      0      3      T
+213      0      3      0      0      0      A
+214      0      0      3      0      0      C
+215      0      0      0      0      3      T
+216      0      2      0      0      1      W
+217      0      1      0      2      0      R
+218      0      0      0      0      3      T
+219      0      3      0      0      0      A
+220      0      0      0      0      3      T
+221      0      0      3      0      0      C
+222      0      1      2      0      0      M
+223      0      0      1      0      2      Y
+224      0      0      0      0      3      T
+225      0      3      0      0      0      A
+226      0      3      0      0      0      A
+227      0      0      0      0      3      T
+228      0      0      2      0      1      Y
+229      0      2      1      0      0      M
+230      0      0      0      0      3      T
+231      0      1      0      0      2      W
+232      0      0      0      0      3      T
+233      0      0      0      0      3      T
+234      0      0      0      0      3      T
+235      0      3      0      0      0      A
+236      0      0      0      0      3      T
+237      0      0      0      0      3      T
+238      0      1      0      2      0      R
+239      0      0      2      1      0      S
+240      0      0      3      0      0      C
+241      0      2      0      0      1      W
+242      0      0      3      0      0      C
+243      0      3      0      0      0      A
+244      0      3      0      0      0      A
+245      0      0      3      0      0      C
+246      0      0      1      0      2      Y
+247      0      3      0      0      0      A
+248      0      3      0      0      0      A
+249      0      0      1      0      2      Y
+250      0      0      3      0      0      C
+251      0      0      0      0      3      T
+252      0      1      1      0      1      H
+253      0      0      3      0      0      C
+254      0      0      0      0      3      T
+255      0      0      1      0      2      Y
+256      0      0      0      3      0      G
+257      0      0      0      3      0      G
+258      0      2      0      1      0      R
+259      0      0      3      0      0      C
+260      0      0      0      0      3      T
+261      0      1      1      0      1      H
+262      0      0      2      0      1      Y
+263      0      0      0      0      3      T
+264      0      2      0      1      0      R
+265      0      0      3      0      0      C
+266      0      0      3      0      0      C
+267      0      0      1      0      2      Y
+268      0      0      3      0      0      C
+269      0      3      0      0      0      A
+270      0      0      3      0      0      C
+271      0      0      0      0      3      T
+272      0      0      3      0      0      C
+273      0      3      0      0      0      A
+274      0      0      0      0      3      T
+275      0      0      0      0      3      T
+276      0      0      1      0      2      Y
+277      0      3      0      0      0      A
+278      0      0      3      0      0      C
+279      0      2      0      1      0      R
+280      0      0      3      0      0      C
+281      0      0      3      0      0      C
+282      0      2      1      0      0      M
+283      0      3      0      0      0      A
+284      0      0      3      0      0      C
+285      0      1      2      0      0      M
+286      0      3      0      0      0      A
+287      0      0      3      0      0      C
+288      0      1      2      0      0      M
+289      0      0      3      0      0      C
+290      0      3      0      0      0      A
+291      0      3      0      0      0      A
+292      0      0      3      0      0      C
+293      0      0      0      0      3      T
+294      0      2      1      0      0      M
+295      0      0      0      0      3      T
+296      0      0      3      0      0      C
+297      0      0      0      0      3      T
+298      0      3      0      0      0      A
+299      0      0      0      0      3      T
+300      0      3      0      0      0      A
+301      0      3      0      0      0      A
+302      0      3      0      0      0      A
+303      0      0      3      0      0      C
+304      0      0      3      0      0      C
+305      0      0      0      0      3      T
+306      0      2      1      0      0      M
+307      0      0      0      3      0      G
+308      0      0      2      1      0      S
+309      0      1      2      0      0      M
+310      0      3      0      0      0      A
+311      0      0      0      0      3      T
+312      0      1      0      2      0      R
+313      0      0      0      3      0      G
+314      0      0      3      0      0      C
+315      0      1      1      0      1      H
+316      0      3      0      0      0      A
+317      0      0      0      0      3      T
+318      0      0      2      0      1      Y
+319      0      0      3      0      0      C
+320      0      0      3      0      0      C
+321      0      0      3      0      0      C
+322      0      0      2      0      1      Y
+323      0      0      0      0      3      T
+324      0      3      0      0      0      A
+325      0      0      0      0      3      T
+326      0      0      0      3      0      G
+327      0      3      0      0      0      A
+328      0      0      0      3      0      G
+329      0      0      3      0      0      C
+330      0      2      0      1      0      R
+331      0      0      0      3      0      G
+332      0      0      0      3      0      G
+333      0      0      2      1      0      S
+334      0      2      0      1      0      R
+335      0      0      3      0      0      C
+336      0      3      0      0      0      A
+337      0      0      0      3      0      G
+338      0      0      0      0      3      T
+339      0      2      0      1      0      R
+340      0      2      0      1      0      R
+341      0      0      0      0      3      T
+342      0      0      1      0      2      Y
+343      0      3      0      0      0      A
+344      0      0      1      0      2      Y
+345      0      2      1      0      0      M
+346      0      0      0      3      0      G
+347      0      0      0      3      0      G
+348      0      0      2      0      1      Y
+349      0      0      0      0      3      T
+350      0      0      0      0      3      T
+351      0      0      1      0      2      Y
+352      0      0      3      0      0      C
+353      0      0      0      3      0      G
+354      0      0      3      0      0      C
+355      0      0      0      0      3      T
+356      0      1      1      0      1      H
+357      0      0      0      0      3      T
+358      0      3      0      0      0      A
+359      0      3      0      0      0      A
+360      0      1      0      2      0      R
+361      0      3      0      0      0      A
+362      0      0      2      0      1      Y
+363      0      0      1      0      2      Y
+364      0      3      0      0      0      A
+365      0      3      0      0      0      A
+366      0      3      0      0      0      A
+367      0      2      0      1      0      R
+368      0      2      1      0      0      M
+369      0      1      0      0      2      W
+370      0      0      0      2      1      K
+371      0      0      3      0      0      C
+372      0      0      3      0      0      C
+373      0      0      2      0      1      Y
+374      0      0      0      0      3      T
+375      0      3      0      0      0      A
+376      0      0      0      3      0      G
+377      0      0      3      0      0      C
+378      0      1      2      0      0      M
+379      0      0      3      0      0      C
+380      0      3      0      0      0      A
+381      0      0      3      0      0      C
+382      0      0      0      0      3      T
+383      0      0      0      0      3      T
+384      0      0      2      0      1      Y
+385      0      0      1      0      2      Y
+386      0      0      0      0      3      T
+387      0      3      0      0      0      A
+388      0      0      3      0      0      C
+389      0      0      3      0      0      C
+390      0      1      1      1      0      V
+391      0      0      3      0      0      C
+392      0      3      0      0      0      A
+393      0      3      0      0      0      A
+394      0      0      0      3      0      G
+395      0      0      0      3      0      G
+396      0      0      3      0      0      C
+397      0      3      0      0      0      A
+398      0      0      3      0      0      C
+399      0      2      1      0      0      M
+400      0      0      3      0      0      C
+401      0      0      3      0      0      C
+402      0      0      0      0      3      T
+403      0      2      1      0      0      M
+404      0      0      2      0      1      Y
+405      0      2      1      0      0      M
+406      0      0      3      0      0      C
+407      0      0      3      0      0      C
+408      0      0      3      0      0      C
+409      0      0      3      0      0      C
+410      0      0      0      0      3      T
+411      0      1      0      0      2      W
+412      0      3      0      0      0      A
+413      0      0      0      0      3      T
+414      0      0      2      0      1      Y
+415      0      0      3      0      0      C
+416      0      0      3      0      0      C
+417      0      1      2      0      0      M
+418      0      3      0      0      0      A
+419      0      0      0      0      3      T
+420      0      3      0      0      0      A
+421      0      0      3      0      0      C
+422      0      0      0      0      3      T
+423      0      3      0      0      0      A
+424      0      0      0      3      0      G
+425      0      0      0      0      3      T
+426      0      1      0      0      2      W
+427      0      2      0      1      0      R
+428      0      0      0      0      3      T
+429      0      0      2      0      1      Y
+430      0      3      0      0      0      A
+431      0      0      0      0      3      T
+432      0      0      3      0      0      C
+433      0      0      0      3      0      G
+434      0      3      0      0      0      A
+435      0      3      0      0      0      A
+436      0      3      0      0      0      A
+437      0      0      3      0      0      C
+438      0      0      1      0      2      Y
+439      0      3      0      0      0      A
+440      0      0      0      0      3      T
+441      0      0      1      0      2      Y
+442      0      3      0      0      0      A
+443      0      0      0      3      0      G
+444      0      0      2      0      1      Y
+445      0      0      3      0      0      C
+446      0      0      0      0      3      T
+447      0      3      0      0      0      A
+448      0      0      2      0      1      Y
+449      0      0      0      0      3      T
+450      0      0      2      0      1      Y
+451      0      3      0      0      0      A
+452      0      0      0      0      3      T
+453      0      0      0      0      3      T
+454      0      0      3      0      0      C
+455      0      3      0      0      0      A
+456      0      3      0      0      0      A
+457      0      0      3      0      0      C
+458      0      0      3      0      0      C
+459      0      2      1      0      0      M
+460      0      3      0      0      0      A
+461      0      0      0      0      3      T
+462      0      2      0      1      0      R
+463      0      0      0      3      0      G
+464      0      0      3      0      0      C
+465      0      0      2      0      1      Y
+466      0      0      2      0      1      Y
+467      0      0      0      0      3      T
+468      0      2      0      1      0      R
+469      0      0      0      3      0      G
+470      0      0      3      0      0      C
+471      0      0      3      0      0      C
+472      0      0      0      3      0      G
+473      0      0      0      0      3      T
+474      0      2      0      0      1      W
+475      0      0      3      0      0      C
+476      0      0      0      3      0      G
+477      0      1      1      0      1      H
+478      0      0      2      0      1      Y
+479      0      0      0      0      3      T
+480      0      3      0      0      0      A
+481      0      3      0      0      0      A
+482      0      0      3      0      0      C
+483      0      0      3      0      0      C
+484      0      0      0      3      0      G
+485      0      0      3      0      0      C
+486      0      0      1      0      2      Y
+487      0      3      0      0      0      A
+488      0      3      0      0      0      A
+489      0      0      2      0      1      Y
+490      0      3      0      0      0      A
+491      0      0      0      0      3      T
+492      0      0      0      0      3      T
+493      0      3      0      0      0      A
+494      0      0      3      0      0      C
+495      0      0      0      0      3      T
+496      0      0      0      3      0      G
+497      0      0      3      0      0      C
+498      0      3      0      0      0      A
+499      0      0      0      3      0      G
+500      0      0      0      3      0      G
+501      0      1      2      0      0      M
+502      0      0      3      0      0      C
+503      0      3      0      0      0      A
+504      0      0      3      0      0      C
+505      0      0      3      0      0      C
+506      0      0      0      0      3      T
+507      0      2      1      0      0      M
+508      0      0      3      0      0      C
+509      0      0      0      0      3      T
+510      0      1      2      0      0      M
+511      0      3      0      0      0      A
+512      0      0      0      0      3      T
+513      0      0      1      2      0      S
+514      0      0      3      0      0      C
+515      0      3      0      0      0      A
+516      0      0      2      0      1      Y
+517      0      0      2      0      1      Y
+518      0      0      0      0      3      T
+519      0      2      0      1      0      R
+520      0      3      0      0      0      A
+521      0      0      0      0      3      T
+522      0      0      0      0      3      T
+523      0      0      0      3      0      G
+524      0      0      0      3      0      G
+525      0      3      0      0      0      A
+526      0      2      0      1      0      R
+527      0      0      0      3      0      G
+528      0      0      2      1      0      S
+529      0      0      0      3      0      G
+530      0      0      3      0      0      C
+531      0      0      2      0      1      Y
+532      0      3      0      0      0      A
+533      0      0      3      0      0      C
+534      0      1      2      0      0      M
+535      0      0      2      0      1      Y
+536      0      0      0      0      3      T
+537      0      3      0      0      0      A
+538      0      0      0      3      0      G
+539      0      0      3      0      0      C
+540      2      0      0      0      1      -
+541      0      2      1      0      0      T
+542      0      1      0      0      2      M
+543      0      0      0      0      3      W
+544      0      3      0      0      0      T
+545      0      0      0      0      3      A
+546      0      0      3      0      0      T
+547      0      3      0      0      0      C
+548      0      3      0      0      0      A
+549      1      0      2      0      0      A
+550      0      0      1      0      2      -
+551      0      3      0      0      0      C
+552      0      0      0      0      3      Y
+553      0      0      1      0      2      A
+554      0      3      0      0      0      T
+555      0      2      0      1      0      Y
+556      0      0      2      0      1      A
+557      0      0      2      1      0      R
+558      0      0      1      0      2      Y
+559      0      1      0      1      1      S
+560      0      1      2      0      0      Y
+561      0      0      3      0      0      D
+562      0      0      3      0      0      M
+563      0      1      0      0      2      C
+564      0      1      2      0      0      C
+565      0      1      0      0      2      W
+566      0      1      0      2      0      M
+567      0      0      3      0      0      W
+568      0      2      0      0      1      R
+569      0      0      2      0      1      C
+570      0      0      0      0      3      W
+571      0      0      1      0      2      Y
+572      0      3      0      0      0      T
+573      0      0      0      0      3      Y
+574      0      0      2      0      1      A
+575      0      3      0      0      0      T
+576      0      0      1      0      2      Y
+577      0      0      2      0      1      A
+578      0      0      0      0      3      Y
+579      0      0      0      0      3      Y
+580      0      0      2      0      1      T
+581      0      3      0      0      0      T
+582      0      0      2      0      1      Y
+583      0      2      0      0      1      A
+584      0      3      0      0      0      Y
+585      0      0      0      0      3      W
+586      0      0      0      0      3      A
+587      0      0      3      0      0      T
+588      0      0      0      0      3      T
+589      0      3      0      0      0      C
+590      0      3      0      0      0      T
+591      0      0      0      0      3      A
+592      0      0      2      0      1      A
+593      0      0      3      0      0      T
+594      0      0      0      0      3      Y
+595      0      3      0      0      0      C
+596      0      0      3      0      0      T
+597      0      0      0      0      3      A
+598      0      0      0      2      1      C
+599      0      3      0      0      0      T
+600      0      0      3      0      0      K
+601      0      0      0      1      2      A
+602      0      3      0      0      0      C
+603      0      0      0      0      3      K
+604      0      0      2      0      1      A
+605      0      0      3      0      0      T
+606      0      0      0      0      3      Y
+607      0      3      0      0      0      C
+608      0      0      0      3      0      T
+609      0      3      0      0      0      A
+610      0      2      0      1      0      G
+611      0      2      0      0      1      A
+612      0      0      0      0      3      R
+613      0      0      2      0      1      W
+614      0      0      0      3      0      T
+615      0      0      3      0      0      Y
+616      0      0      1      0      2      G
+617      0      0      0      3      0      C
+618      0      0      0      0      3      Y
+619      0      0      2      0      1      G
+620      0      0      0      3      0      T
+621      0      0      3      0      0      Y
+622      0      0      3      0      0      G
+623      0      0      0      0      3      C
+624      0      0      0      0      3      C
+625      0      3      0      0      0      T
+626      0      3      0      0      0      T
+627      0      0      0      0      3      A
+628      0      0      2      0      1      A
+629      0      0      3      0      0      T
+630      0      3      0      0      0      Y
+631      0      3      0      0      0      C
+632      0      0      0      3      0      A
+633      0      0      3      0      0      A
+634      0      0      3      0      0      G
+635      0      0      0      0      3      C
+636      0      3      0      0      0      C
+637      0      0      2      0      1      T
+638      0      0      0      3      0      A
+639      0      0      0      0      3      Y
+640      0      0      0      0      3      G
+641      0      0      0      0      3      T
+642      0      0      0      0      3      T
+643      0      0      1      0      2      T
+644      0      3      0      0      0      T
+645      0      0      3      0      0      Y
+646      0      2      1      0      0      A
+647      0      0      2      0      1      C
+648      0      0      0      0      3      M
+649      0      1      0      0      2      Y
+650      0      0      3      0      0      T
+651      0      0      0      0      3      W
+652      0      3      0      0      0      C
+653      0      0      0      3      0      T
+654      0      0      0      0      3      A
+655      0      1      0      2      0      G
+656      0      3      0      0      0      T
+657      0      0      0      3      0      R
+658      0      0      2      0      1      A
+659      0      0      3      0      0      G
+660      0      0      0      0      3      Y
+661      0      1      2      0      0      C
+662      0      0      0      0      3      T
+663      0      3      0      0      0      M
+664      0      0      3      0      0      T
+665      0      0      2      0      1      A
+666      0      0      0      0      3      C
+667      0      1      0      2      0      Y
+668      0      0      3      0      0      T
+669      0      3      0      0      0      R
+670      0      0      2      0      1      C
+671      0      0      0      3      0      A
+672      0      3      0      0      0      Y
+673      0      0      3      0      0      G
+674      0      3      0      0      0      A
+675      0      3      0      0      0      C
+676      0      0      3      0      0      A
+677      0      3      0      0      0      A
+678      0      0      3      0      0      C
+679      0      2      1      0      0      A
+680      0      0      0      0      3      C
+681      0      3      0      0      0      M
+682      0      3      0      0      0      T
+XX
+//
+</textarea>
+                            </div>
+                            <!--close paste seqence data textbox-->
+                            <div class="form-group row">
+                                <!--Start div for Download and Dropbox button-->
+                                <div class="col-sm-8">
+                                    <!--start create&clear button column-->
+                                    <div class="form-group">
+                                        <!--open create&clear button div-->
+                                        <button class="btn btn-success btn-md" type="submit" name="cmd_create">
+                                            <span class="glyphicon glyphicon-ok"></span> Create WebLogo
+                                        </button>
+                                        <button type="button" class="btn btn-default" name="cmd_clear" onclick="document.logoform.sequences.value='';"> Clear</button>
+                                    </div>
+                                    <!-- end create&clear button div-->
+
+                                    
+                                </div> <!--end .col-sm-8 create&clear button column-->
+                                
+                                <div class="col-sm-4"><!--start spacing div for download checkbox-->
+                                    
+                                    <div class="form-group">
+                                        <!--start download checkbox div-->
+                                        <label>
+                                            <input type="checkbox" name="download" value="false">&nbsp Download to local drive
+                                        </label>
+                                    </div>
+                                    <!--end download checkbox div div-->
+                                </div>
+                            </div>
+                            <!--End clearfix row div for Download and Dropbox button-->
+                        </div>
+                        <!--end clearfix #thumbnail-1 div-->
+                    </div>
+                    <!--end col-sm-10 central column for sequence data form-->
+                    <div class="col-sm-1"> <!--start margin row for sequence data form-->
+                        <br>
+                    </div><!--end margin row for sequence data form-->
+
+                </div>
+                <!--end sequence data form row-->
+                <div class="row">
+                    <!--start row for logo options-->
+                    <div class="col-sm-1">
+                        <br>
+                    </div>
+                    <!--left column margin for logo options form-->
+                    <div class="col-sm-10" id="wrap">
+                        <!--central col-sm-10 logo options column-->
+                        <div class="thumbnail col-sm-6" id="thumbnail-2">
+                            <!--start thumbnail-2 div; left side logo options-->
+                            <div class="form-group">
+                                <!--open title div-->
+                                <label>Title:</label>
+                        <input type="text" name="logo_title" value="" maxlength="80" placeholder="max 80 char " id="title">
+                    </div>
+                            <!--close title div-->
+                            <div class="form-group clearfix">
+                                <!--open output format div-->
+                                <label>Output Format:</label>
+                                
+                                    <!--open div for format options-->
+                                    <select name="format">
+                                        <option selected value="png">PNG (low res.)</option>
+                                        <option  value="png_print">PNG (high res.)</option>
+                                        <option  value="jpeg">JPEG (low res.)</option>
+                                        <option  value="eps">EPS (vector)</option>
+                                        <option  value="pdf">PDF (vector)</option>
+                                        <option  value="svg">SVG (vector)</option>
+                                        <option  value="logodata">Data (plain text)</option> 
+                                    </select> 
+                                
+                                <!--close div for format options-->
+                            </div>
+                            <!--close output format div-->
+
+                            <!--open div for sequence type option-->
+                            <div class="form-group">
+                                <label >Sequence type </label>
+                                <select type="submit" name="alphabet">
+                                    <option  value="alphabet_auto" >auto</option>
+                                    <option  value="alphabet_protein">protein</option>
+                                    <option  value="alphabet_dna">dna</option>
+                                    <option  value="alphabet_rna">rna</option>
+                                </select>
+                            </div> <!--close dive for sequence type option-->    
+
+                            <div class="form-group">
+                                <!--open logo-size div-->
+                                <label ${size_err}>Logo-size: </label>
+                                <select type="submit" name="stack_width">
+                                    <option >small</option>
+                                    <option selected>medium</option>
+                                    <option >large</option>
+                                </select>
+                            </div>
+                            <!--close logo-size div-->
+                            <div class="form-group">
+                                <!--open Stacks per Line div-->
+                                <label >Stacks per Line:</label>
+                                <input type="text" name="stacks_per_line" size="8" value="40" placeholder="40">
+                            </div>
+                            <!--close div for format options-->
+
+
+                            <div class="form-group">
+                                <!--open Ignore lower case div-->
+                                <label>Ignore lower case:
+                                    <input type="checkbox" name="ignore_lower_case" value="true" True>
+                                </label>
+                            </div>
+                            <!--close ignore lower case div-->
+                            <div class="form-group">
+                                <!--open Units div-->
+                                <label>Units: </label>
+                                <select name="unit_name">
+                                    <option >probability</option>
+                                    <option selected>bits</option>
+                                    <option >nats</option>
+                                    <option >kT</option>
+                                    <option >kJ/mol</option>
+                                    <option >kcal/mol</option>
+                                </select>
+                            </div>
+                            <!--close Units div-->
+                            <div class="form-group">
+                                <!--open first position number div-->
+                                <label > First position number: </label>
+                                <input type="text" name="first_index" placeholder="max length 80" size="4" maxlength="80" value="1">
+                            </div>
+                            <!--close first position div-->
+                            <div class="form-group">
+                                <!--open logo range div-->
+                                <label > Logo range: </label>
+                                <input type="text" placeholder="logo start" name="logo_start" value="1" size="4" maxlength="80"> -
+                                <input type="text" placeholder="logo end" name="logo_end" value="682" id="formGroupInputSmall" size="4" maxlength="80">
+                            </div>
+                            <!--close logo range div-->
+                            <div class="form-group">
+                                <!--open figure label div-->
+                                <label>Figure label:</label>
+                                <input type="text" name="logo_label" value="" maxlength="100">
+                            </div>
+                            <!--close figure label div-->
+                            <div class="form-group">
+                                <!--open scale stack div-->
+                                <label>Scale stack widths: </label>
+                                <input type="checkbox" name="scale_width" value="true" True>
+                            </div>
+                            <!--close scale stack div-->
+                            <div class="form-group">
+                                <!--open composition div-->
+                                <label >Composition:</label>
+                                <select name="composition">
+                                    <option  value="comp_none">No adjustment for composition</option>
+                                    <option selected value="comp_auto">auto</option>
+                                    <option  value="comp_equiprobable">equiprobable</option>
+                                    <option  value="comp_CG">Percentage CG &#8658;</option>
+                                    <option  value="comp_Celegans">C. elegans (36%) </option>
+                                    <option  value="comp_Dmelanogaster">D. melanogaster (43%)</option>
+                                    <option  value="comp_Ecoli">E. coli (50.5%) </option>
+                                    <option  value="comp_Hsapiens">H. sapiens (40%) </option>
+                                    <option  value="comp_Mmusculus">M. musculus (42%)</option>
+                                    <option  value="comp_Scerevisiae">S. cerevisiae (38%)</option>
+                                </select>
+                                <span>or</span>
+                                <input type="text" name="percentCG" value="" size="4" maxlength="8">
+                                <span> % CG </span>
+                            </div>
+                            <!--close composition div-->
+
+
+                            <div id="padding-div">
+                                <br>
+                            </div>
+                        </div>
+                        <!--close 2nd thumbnail column-->
+                        <div class="thumbnail col-sm-6" id="thumbnail-3">
+                            <!--start third thumbnail ; right side logo options-->
+
+                                                        <!--start error bars div-->
+                            <div class="form-group">
+                                <label>Error bars: </label>
+                                <input type="checkbox" name="show_errorbars" value="true" True checked>
+                            </div>
+                            <!--end error bars div-->
+
+
+                            <div class="form-group">
+                                <!--start Sequence Ends labels:div-->
+                                <label>Show Sequence Ends labels:</label>
+                                <input type="checkbox" name="show_ends" value="true" True>
+                            </div>
+                            <!--end Sequence Ends labels:div-->
+                            <div class="form-group">
+                                <!--start Version fineprint: -->
+                                <label>Version fineprint: </label>
+                                <input type="checkbox" name="show_fineprint" value="true" checked True>
+                            </div>
+                            <!--end Version fineprint: -->
+                            <div class="form-group">
+                                <!--start x-axis div-->
+                                <label>X-axis</label>
+                                <input type="checkbox" name="show_xaxis" value="true" True>
+                                <span>Label: </span>
+                                <input type="text" name="xaxis_label" value="" size="20" maxlength="100">
+                            </div>
+                            <!--end x-axis div-->
+                            <div class="form-group">
+                                <!--start y-axis div-->
+                                <label>Y-axis</label>
+                                <input type="checkbox" name="show_yaxis" value="true" True>
+                                <span>Label: </span>
+                                <input type="text" name="yaxis_label" value="auto" size="20" maxlength="32">
+                            </div>
+                            <!--end y-axis div-->
+                            <div class="form-group">
+                                <!--start y-axis scale div-->
+                                <label>Y-axis scale:</label>
+                                <input type="text" name="yaxis_scale" value="auto" size="4" maxlength="100" placeholder="100 character max">
+                            </div>
+                            <!--end y-axis scale div-->
+                            <div class="form-group">
+                                <!--Y-axis tic spacing-->
+                                <label>Y-axis tic spacing:</label>
+                                <input type="text" name="yaxis_tic_interval" value="1.0" placeholder="Y-axis tic spacing" size="4" maxlength="100">
+                            </div>
+                            <div class="form-group" >
+                                <!--start color scheme div-->
+                                <label >Color scheme: </label>
+                                <select name="color_scheme">
+                                    <option selected value="color_auto">Auto</option>
+                                    <option  value="color_monochrome">Monochrome</option>
+                                    <option  value="color_base_pairing">Base pairing (NA default)</option>
+                                    <option  value="color_classic">Classic (NA)</option>
+                                    <option  value="color_hydrophobicity">Hydrophobicity (AA default)</option>
+                                    <option  value="color_chemistry">Chemistry (AA)</option>
+                                    <option  value="color_charge">Charge (AA)</option>
+                                    <option  value="color_custom">Custom (Specify below)</option>
+                                </select>
+                                <!--&nbsp; Color key:
+                          <input type="checkbox" name="show_color_key" value="true" ${show_color_key} disabled >
+                          -->
+                            </div>
+                            <!--end color scheme div-->
+
+                            <div class="row">
+                            <div class="col-sm-5">  
+
+                              <div class="form-group stacked-textfields" id="Symbols">
+                                <!--start symbols div-->
+                              
+                                <div>
+                                    <label>Symbols:</label>
+                                </div>
+                                <div>
+                                    <!--start symbol options-->
+                                    <input name="symbols0" type="text"  maxlength="64" value="">
+                                    <input name="symbols1" type="text"  maxlength="64" value="">
+                                    <input name="symbols2" type="text"  maxlength="64" value="">
+                                    <input name="symbols3" type="text"  maxlength="64" value="">
+                                    <input name="symbols4" type="text"  maxlength="64" value="">
+                                </div>
+                                <!--end symbol options-->
+                               </div>
+                            </div>
+                            <!--end symbols div-->
+
+                            <div class="col-sm-5"> 
+
+                                <div class="form-group stacked-textfields" id="Colors">
+                                <!--start colors div-->
+                                <div>
+                                    <label>Color:</label>
+                                </div>
+                                <div>
+                                    <input name="color0" type="text" maxlength="64" value="">
+                                    <input name="color1" type="text" maxlength="64" value="">
+                                    <input name="color2" type="text" maxlength="64" value="">
+                                    <input name="color3" type="text" maxlength="64" value="">
+                                    <input name="color4" type="text" maxlength="64" value="">
+                                </div>
+                              </div>
+
+                            </div>
+                          </div> <!--end row for color and symbols div-->
+                           
+                            <!--end colors div-->
+                            <div class="form-group">
+                                <!--start reset defaults div-->
+                                <!--Reset defaults must come after create_logo so that hitting enter creates a logo-->
+                                <input type="submit" class="btn btn-default btn-sm" name="cmd_reset" value= "Reset Defaults"> 
+                                
+                            </div>
+                            <!--end reset defaults div-->
+                        </div>
+                        <!--close 3rd thumbnail group-->
+
+                        <!--start 4th thumbnail group-->
+                        <div class="thumbnail clearfix" id="thumbnail-4">
+                         
+                            <div class="form-group">
+                                <!--start create weblogo bottom button div-->
+                                 <button class="btn btn-success btn-lg" type="submit" name="cmd_create" id="last-button">
+                                <span class="glyphicon glyphicon-ok"></span> Create WebLogo </button>
+                            </div>
+                            <!--end create weblogo bottom button div-->
+                        </div>
+                        <!--end 4th thumbnail group-->
+                    </div>
+                    <!--end col-sm-10 central logo options column-->
+                    <div class="col-sm-1">
+                        <br>
+                    </div>
+                    <!--right column margin for logo options form-->
+                </div>
+                <!--end row for logo options-->
+            </form>
+            <!--end WebLogo form-->
+            <div class="footer row" id="footer">
+                <br>
+            </div>
+        </div>
+        <!--end outermost row container-->
+    </div>
+    <!--end fluid container for responsive content-->
+    <!--fallback to server-hosted files in case CDNs fail-->
+
+    <!--Google analytics-->
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    var pageTracker = _gat._getTracker("UA-5951066-1");
+    pageTracker._trackPageview();
+    </script>
+</body>
+
+</html>
+

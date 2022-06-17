@@ -1,0 +1,157 @@
+MUSCLE (3.8) multiple sequence alignment
+
+
+chimpanzee      ATGTTGTGGAAAATAACCGATAATGTCAAGTACGAAGAGGACTGCGAGGATCGCCACGAC
+human           ATG---------------AAGATTG-----CACACAGAGGTCCAGA--------------
+dog             ATG---------------GCGAACTATAGCCATGCAGCTGACAACA--------------
+                ***                  *         *   **  * *                  
+
+chimpanzee      GGGAGCAGCAATGGGAATCCGCGAGTCCCCCACCTCTCCTCCGCCGGGCAGCACCTCTAC
+human           ---------------------------------------------------------TGC
+dog             ------------------------------------------------------TTTTAC
+                                                                         * *
+
+chimpanzee      AGCCCCGCGCCACCCCTCTCCCACACTGGAGTCGCCGAAT--ATCAGCCGCCACCCTACT
+human           A--------------TTCCGTTTTGAGAATGTCAATGGATACACCAACTG-CTGCTTTGG
+dog             A--------AAATCTTTCTCCTCTAACAGCCTTTCTGA-------AACTGACTTCCTTGG
+                *               **             *    *        * * * *  * *   
+
+chimpanzee      TTCCCCCTCCCTACCAGCAGCTGGCCTACTCCCAGTCGGCCGACCCCTACTCGCATCTGG
+human           ATTTCACCGGTTGGCGGTAGTTGACCCGCTGTTTGGAATGCAGCC--------AATTCGA
+dog             GTTTCA-----TAATAGGAGTCAGCGT-------GGTGGGCAACC----TTCTGATCT--
+                 *  *      *    * **    *         *     *  **         **    
+
+chimpanzee      GGGAAGCGTACGCCGCCGCCATCAACCCCCTGCACCAGC-----CGGCGCCCACAGGCAG
+human           GTGAAGAAATATCCGTATTTGTGGCTCTGTTACAATGGTGAAATCTACAACCATAAGAAG
+dog             --------------------------CCATTTTGCTAGTGAAAGATAAGACCTTGCATAG
+                                          *   *      *            **      **
+
+chimpanzee      C--CAGCAGCAGGCCTGGCCCGGCCGCCAGAGCCAGGAGGGAGCGGGGCTGCCCTCGCAC
+human           ATGCAACAGCATTTTGAATTTGAATACCAGACCAAAGTGGATGGTGAGATAATCCTTCAT
+dog             -------AGCACCTTACTACTTCCTGTTGGATCT---TTGCTGTTCAGATATCCTCAGAT
+                       ****                  ** *      *  *    * *   *    * 
+
+chimpanzee      CAC--------------GGGCGCCCGGCCGGCCTGC------------------------
+human           CTTTATGACAAAGGAGGAATTGAGCAAACAATTTGTATGTTGGATGGTGTGTTTGCATTT
+dog             CTG-------------------------CAATTTGT---------------TTCCCATTT
+                *                           *    **                         
+
+chimpanzee      ----TGCCCCACCTCTCCGGGCTGGAGGCGGGCGCG-GTGAGCGCCCGCAGGGATGCCTA
+human           GTTTTACTGGATACTGCCAATAAGAAAGTGTTCCTGGGTAGAGATACATATGGAGTCAGA
+dog             G---TATTCAACTCTGTCA-----AAAATGGCTCTACCTGGACTTACG---GGACTCTGA
+                    *     *      *       *   *        *       *    ***  *  *
+
+chimpanzee      CCGCCGCTCCGACCTGC---------TGCTGCCCCACGCACACGCCCTGGATGCCGCGGG
+human           CCTTTGTTTAAAGCAATGACAGAAGATGGATTTTTGGCTGTATGTTCAGAAGCTAAAGGT
+dog             CT----TGCAAAGTGAT---------TGCCTTTCTGGG-------------------GGT
+                *          *              **                             ** 
+
+chimpanzee      CCTGGCCGAGAACCTGGGG--CTCCACGAC----------------------ATGCCTCA
+human           CTTGTTACA----TTGAAGCACTCCGCGACTCCCTTTTTAAAAGTGGAGCCTTTTCTTCC
+dog             TTTGTC-------CTGT----TTCCAC-ACTGCTTTCATG----------CTCTTCTGCA
+                  **          **      *** * **                       * *  * 
+
+chimpanzee      CCAGATGGACGAGGTGCAGAATGTCGACGACCAGCACCTGTTGCTGCACGATCAGACAG-
+human           TGGACACTATGAAGTTTTGGAT-TTAAAGCCAA--------------ATGGCAAAGTTGC
+dog             TCAGCGTCACCAGATACTTAG--CTATCGCCCATCACC-GCTTCTATACAAAGAGGCTGA
+                        *  *  *             * * *              *     *    * 
+
+chimpanzee      TCATTCGCAAAGGTCCCATTTCCATGACC-----AAGAACCCTCTGAACCTCCCCTGTCA
+human           ATCCGTGGAAATGGTTAAATATCATCACTGTCGGGATGTACCCCTGCACGCCCTCTAT--
+dog             CCTTTTGGACGTGTCTGGCTGTCATCTGCATGGTG---------TGGACTCTGTCTGT--
+                      * *   *      *  ***                   ** **     ** *  
+
+chimpanzee      GAAGGAGCTGGTGGGGGCCGTAATG---AACCCCACTGAGGTCTTCTGCTCGGTCCCT--
+human           ---------------GACAATGTGGAGAAACTCTTTCCAGGTTTTGAGATAGAAACTG--
+dog             ---------------GGCCATGG-----CATTCCCCCCAGTTTTAGATGTGGGCACTTAC
+                               * *  *        *  *     ** * *     * *   *    
+
+chimpanzee      --------------GGAAGA------TTGTCGCTCCT-----CAGCTCT--------ACG
+human           --------------TGAAGAACAACCTCAGGATCCTTTTTAATAATGCTGTAAAGAAACG
+dog             TCATTCATTAGGGAGGAAGA------TCAATGTACCTTCCAACACCGCT---------CC
+                               *****      *       * *      *   **         * 
+
+chimpanzee      TCTAAATACAAAGTGACAG--TGGCTGAAG--TACAGAGGCGACTGTCCCCACCTGAAT-
+human           TTTGATGACAGACAGAAGGATTGGCTGCCTTTTATCAGGGGGCTTGGACTC---------
+dog             TT------CAGGGCTAATGATTCCTTAGGATTTATGCTGCTCCTTGCTCTCATCCTCCTA
+                *       **     *  *  *   *      **    *     **  * *         
+
+chimpanzee      --------GCTTAAATGCCTC--GTTACTGGGAGGTGTTCTCAGAAGAGCCAAATCGAAA
+human           ------CAGCTTGGTT-------GCTGCCACTCTGTTGAAGCAGCTGAAAGAAGCCCAAG
+dog             GCCACACAGCTTGTCTACCTCAAGCTGATATTTTTTGTCCACGACCGAAGGAAAATGAAG
+                        ****   *       * *         *     *    **   **    ** 
+
+chimpanzee      AATGGAGGCCGGTCC---TTGCGGGAGAAGTTAGACAAGATTGGGTTGAATCTTCCG---
+human           TACAGTATCCTCTCCAGACATTTGCAATTGGCATGGAAGACAGCCCCGA-TTTACTG---
+dog             --------CCAGTCCAGTTTGTAGCAGCAGTCAGCCAGAACTGGACT---TTTCATGGCC
+                        **  ***        * *   *  *   *  *  *       * *   *   
+
+chimpanzee      -----GCTGGGAGGCGGAAAGCCGCTCAT-------GTGACTCTCCTGACATCCTTAGTA
+human           -----GCTGCTAGAAAGGTGGCAGATCATATTGGAAGTGAACATTATGAAGTCCTTTTTA
+dog             CTGGAGCCAGTGGCCAGGCAGCCGCCAAT-------------------------------
+                     **     *   *   ** *   **                               
+
+chimpanzee      -----GAAGGTGAAGCTGTGCATTTGGCTAGGG----ACTTT--------GCCTATGTCT
+human           ACTCTGAGGAAGGCATTCAGGCTCTGGATGAAGTCATATTTTCCTTGGAAACTTATGACA
+dog             ----------TGGCTCGCAGGATTTGGAAGGGGTCCCACACC--------ACCC------
+                           *       *  * ***     *    *             *        
+
+chimpanzee      GTGAAGCCG-------------------------AATTTCCTAGTAAACCAGTGGCAGAA
+human           TTACAACAGTTCGTGCTTCAGTAGGTATGTATTTAATTTCCAAGTATATTC--GGAAGAA
+dog             ----------------------------------ACCTTGCTGG-GCATCA--GGCAAAA
+                                                  *  ** *  *   *     ** * **
+
+chimpanzee      TATTTAACCAGACCTCAT-------------CTCGGAGGACGAAATGAGATGGCA-----
+human           CA------CAGATAGCGTGGTGATCTTCTCTGGAGAAGGATCAGATGAACTTACGCAGGG
+dog             TG------CAAACACCACGG-----------GCAGAAG----------------------
+                        ** *   *                  * **                      
+
+chimpanzee      -----------GCTAGGAAGAACATGCTATTGGC--GGCCCAGCAACTGTGTAAAGA---
+human           TTACATATATTTTCACAAGGCTCCTTCTCCTGAAAAAGCCGAGGAGGAGAGTGAGAGGCT
+dog             ----------------AAGGCTCTTGGTCCTAGATGAGTTCAA-AATGGAGAAAAGA---
+                                 * *  * *  *  *      *   *  *   * *  *      
+
+chimpanzee      --------------ATTCACAGAA-CTTCTCAGCCAAGACCGGACACCCCATGGGACCAG
+human           TCTGAGGGAACTCTATTTGTTTGATGTTCTCCGCGCAGATCGAACTACT-----------
+dog             --------------ATCAGCAGAATGTTCT--------ATATAATGACTTTT--------
+                              **       *  ****        *    *   *            
+
+chimpanzee      CAGGCTCGCCCCAGTCTTG----GAGACGAACATACAGAA-------------------C
+human           ---GCTGCCCATGGTCTTGAACTGAGAGTCCCATTTCTAGATCATCGATTTTCTTCCTAT
+dog             ----CTCTTCCTAACCTT-----GTGGGGCCCATACCTGG-------------------T
+                    **   *     ***     * *     ***                          
+
+chimpanzee      TGCTTGTCTC-----------------ATTTCAG----------------------CCTG
+human           TACTTGTCTCTGCCACCAGAAATGAGAATTCCAAAGAATGGGATAGAAAAACATCTCCTG
+dog             GGCCTGTTATTG-----------GAGAGTTTTTGCAAGAGGG--------------CCTG
+                  * ***                     **                          ****
+
+chimpanzee      --------------------------ATTACCCACGGG-----TTTGGCAGCC-----AG
+human           AGAGAGACGTTTGAGGATTCCAATCTGATACCCAAAGAGATTCTCTGGCGACCAAAAGAA
+dog             -------------------------TAGTACC--AGGGGGATTTCTAACAGCC-------
+                                            ****    *      * *  *  **       
+
+chimpanzee      GCCATCTGTGCCGCGGTGTCTGCCCTGCAGAAC---------------------------
+human           GCCTTCAGTGATGGAATAACTTCAGTTAAGAATTCCTGGTTTAAGATTTTACAGGAATAC
+dog             GCTGTCTG-GATGAGTTTTGCCCAAGCAGGAAT---------CAATCCTTTTGTCTGCAT
+                **  ** * *  *   *     *      ***                            
+
+chimpanzee      ----TACATCAAA-----GAAGCCCTGAT------TGTCATAGACAAAT---CCTACATG
+human           GTTGAACATCAGGTTGATGATGCAATGATGGCAAATGCAGCCCAGAAATTTCCCTTCAAT
+dog             TTTCTCCAACAGGGAGCTGAGGCGCTGT-------TTCAGCACAA------CCCTCCTTT
+                      ** **       ** **  **        *       *        *** *   
+
+chimpanzee      AACCCTGGAG------------------------------------------ACCAGAGT
+human           ACTCCTAAAACCAAAGAAGGATATTACTACCGTCAAGTCTTTGAACGCCATTACCCAGGC
+dog             ACTGCAGAAA------------------------------------------ATCCAGGT
+                *   *   *                                           * *   * 
+
+chimpanzee      CCAGCTGATTCTAACAAAACC----CTGGAG---AAAATGGA------------------
+human           CGGGCTGA--CTGGCTGAGCCATTACTGGATGCCCAAGTGGATCAATGCCACTGACCCTT
+dog             TA--------CCAAGGGAACC-TTACTGTGT---TATATGA-------------------
+                          *      * **    ***       *  **                    
+
+chimpanzee      -------------GAAGCACAGGAAATAA---------------
+human           CTGCCCGCACGCTGACCCACTACAAGTCAGCTGTCAAAGCTTAG
+dog             --------------------------------------------
+                                                            

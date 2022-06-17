@@ -1,0 +1,186 @@
+right
+left
+thyroid
+nodule
+fna
+normal
+abnormal
+increase
+decrease
+isthmus
+upper
+mid
+lower
+decrease
+nochange
+increase
+solid
+predominantly solid
+predominantly cystic
+cystic
+oval-to-round
+irregular
+parallel
+nonparallel
+smooth
+spiculated
+microlobulated
+ill-defined
+calcification
+microcalcification
+macrocalcification
+rim calcification
+present
+absent
+none
+perinodular
+mild intranodular
+marked intranodular
+level 1
+level 2
+level 3
+level 4
+level 5
+level 6
+supraclavicular fossa
+lobe
+parathyroid
+biospy
+follow-upper
+ktirads
+ktirads1
+ktirads2
+benign
+pure cyst
+comet tail artifacts
+spongiform
+ktirads3
+low suspicion
+partially
+ktirads4
+intermediate suspicion
+suspicious
+ktirads5
+high suspicion
+margin
+isoechgenic
+hypoechgenic
+macro/microcalcification
+one
+pure
+rimcalcification
+isohypoechgenic
+location
+regular
+possibly
+predominantly
+remaining
+information
+recommendation
+conclusion
+lymphadenopathy
+parotid
+complication
+complication thyroid
+exophytic
+probability
+approximately
+done
+echogenic
+node
+mild
+indication
+well defined
+containing
+screening
+probable
+history
+large
+middle
+adenomatoid
+noted
+echogenicity
+malignancy
+malignant
+mass composition
+correlation
+fine
+lymphoid
+round
+disease
+tail
+strap
+local
+midline
+yellow
+change
+median
+possible
+mainly
+complication several
+bilat
+germinal
+guided
+gland
+comettail artifacts
+comettail
+artifacts
+portions
+multiple
+heterogneous
+inner
+perileional
+enhancement
+pleomorphic
+grade
+enlarged
+bilateral
+defined
+appearance
+pathologic
+visible
+lateral
+aspiration
+margin/spiculated
+finding
+colloid
+cancer
+papillary
+thyroiditis
+rimcalcification
+pure
+intermediate
+entire
+local
+spiculated
+internal
+enlargement
+central
+anterior
+fnab
+immediate
+adenoma
+conglomerated
+degeneration
+coarse
+interval
+bloody
+ovoid
+test
+extent
+pole
+evidence
+diffuse
+remarkable
+unremarkable
+focal
+metastasis
+adenomatous
+moderate
+recurrence
+significant
+reactive
+follicular
+hyperplasia
+cervical
+goiter
