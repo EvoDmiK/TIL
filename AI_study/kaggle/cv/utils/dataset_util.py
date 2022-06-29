@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 from collections import Counter
 import numpy as np
 import os, cv2
+
+
 def build_dataset(dataset_path, size = None):
     image_paths    = sorted(list_images(dataset_path))
     images, labels = [], []
@@ -61,4 +63,19 @@ def display_image(data, idx2lb, tensor = True):
     plt.title(idx2lb[idx])
     plt.axis(False)
     
+
+def display_history(history, epoch):
     
+    f, axes = plt.subplots(1, 2)
+    f.set_size_inches((20, 5))
+
+    for idx, label in enumerate(['acc', 'loss']):
+        
+        loc = 'lower right' if label == 'loss' else 'upper right'
+        
+        axes[idx].plot(range(epoch), history[f'train_{label}'], 'y', label = f'train_{label}')
+        axes[idx].plot(range(epoch),  history[f'valid_{label}'], 'b',  label = f'valid_{label}')
+        axes[idx].set_title(f'Train, Valid {label} Graph')
+        axes[idx].legend(loc=loc)
+        axes[idx].set_ylabel(f'{label} value')
+        axes[idx].set_xlabel('epoch')
