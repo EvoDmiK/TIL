@@ -10,3 +10,6 @@
 **/*.h5
 **/*.pt
 **/*.pyc
+
+**/Template.ipynb
+**/Untitled.ipynb
