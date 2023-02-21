@@ -1,15 +1,17 @@
-**/*-checkpoint*
-**/*.jpg
-**/*.db
-**/*.zip
-**/*.png
-**/*.json
+## 데이터 보호 
 **/*.docx
+**/*.json
 **/*.csv
+**/*.jpg
+**/*.png
 **/*.txt
+**/*.zip
+**/*.db
 **/*.h5
 **/*.pt
-**/*.pyc
 
+## 굳이 필요없는 애들
 **/Template.ipynb
 **/Untitled.ipynb
+**/*-checkpoint*
+**/*.pyc
