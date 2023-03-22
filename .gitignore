@@ -1,4 +1,5 @@
-## 데이터 보호 
+## 데이터 보호
+doodle/data/**/*.* 
 dataset/**/*.*
 **/*.docx
 **/*.json
