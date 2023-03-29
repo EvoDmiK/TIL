@@ -21,3 +21,7 @@ dataset/**/*.*
 **/*-checkpoint*
 **/*.ttf
 **/*.pyc
+
+
+## 다른 사람 코드
+**/**/pytorch
