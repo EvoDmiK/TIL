@@ -16,6 +16,7 @@ dataset/**/*.*
 **/*.pt
 
 ## 굳이 필요없는 애들
+**/**/.ipynb_checkpoints
 **/Template.ipynb
 **/Untitled.ipynb
 **/*-checkpoint*
