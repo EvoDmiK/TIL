@@ -21,6 +21,8 @@ dataset/**/*.*
 **/Template.ipynb
 **/Untitled.ipynb
 **/*-checkpoint*
+**/*.onnx
+**/*.pth
 **/*.ttf
 **/*.pyc
 
