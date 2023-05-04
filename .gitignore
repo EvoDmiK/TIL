@@ -19,7 +19,7 @@ dataset/**/*.*
 **/**/.ipynb_checkpoints
 **/output/**/*.*
 **/Template.ipynb
-**/Untitled.ipynb
+**/Untitled*.ipynb
 **/*-checkpoint*
 **/*.onnx
 **/*.pth
