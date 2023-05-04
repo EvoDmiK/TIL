@@ -19,14 +19,12 @@ dataset/**/*.*
 **/**/.ipynb_checkpoints
 **/output/**/*.*
 **/Template.ipynb
-**/Untitled.ipynb
+**/Untitled*.ipynb
 **/*-checkpoint*
 **/*.onnx
 **/*.pth
 **/*.ttf
 **/*.pyc
 
-
-## 다른 사람 저작물
+## 다른 사람 코드
 **/**/pytorch
-**/*.pdf
