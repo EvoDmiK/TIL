@@ -1,6 +1,7 @@
 ## 데이터 보호
 DOODLE/data/**/*.* 
-dataset/**/*.*
+Dataset/**/*.*
+Dataset/**/*
 **/*.docx
 **/*.json
 **/*.csv
