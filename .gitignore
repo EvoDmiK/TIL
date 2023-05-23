@@ -1,5 +1,5 @@
 ## 데이터 보호
-doodle/data/**/*.* 
+DOODLE/data/**/*.* 
 dataset/**/*.*
 **/*.docx
 **/*.json
