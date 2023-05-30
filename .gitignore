@@ -1,4 +1,5 @@
 ## 데이터 보호
+**/Object Detection/**/*.*
 DOODLE/data/**/*.* 
 Dataset/**/*.*
 Dataset/**/*
@@ -7,11 +8,11 @@ Dataset/**/*
 **/*.csv
 **/*.jpg
 **/*.png
+**/*.npz
 **/*.tar
 **/*.txt
 **/*.xml
 **/*.zip
-**/*jpg
 **/*.db
 **/*.h5
 **/*.pt
@@ -27,5 +28,7 @@ Dataset/**/*
 **/*.ttf
 **/*.pyc
 
-## 다른 사람 코드
+## 다른 사람저작물
+**/**/LICENSE
 **/**/pytorch
+**/**/*.pdf
