@@ -21,15 +21,20 @@ def random_jitter(image):
 
 
 ## 샘플 데이터를 읽어오는 함수
-def read_sample(data, dtype = 'train'):
+def read_train_sample(data):
     
     image = preprocess_image(data['image'])
     
-    ## dtype == 'train' 즉, 학습용 데이터 셋인 경우
-    ## random jitter 과정도 수행
-    if dtype == 'train': image = random_jitter(image)
-    
+    ## 학습용 데이터 셋인 경우 random jitter 과정도 수행
+    image = random_jitter(image)
     image = tf.image.resize(image, [256, 256])
     
     return (image)
 
+
+def read_test_sample(data):
+    
+    image = preprocess_image(data['image'])
+    image = tf.image.resize(image, [256, 256])
+    
+    return (image)

@@ -16,12 +16,14 @@ class CycleGAN:
         self.width  = width
         self.height = height
         
-        
+    
+    ## Convolution layer block
     def conv_block(self, input_, channel, kernel, stride = 1, drop_p = None, activation = 'relu'):
         
         if activation.lower() != 'leakyrelu':
             conv  = Conv2D(channel, (kernel, kernel), strides = stride, activation = activation, 
                             padding = 'same')(input_)
+            
             
         else:
             conv  = Conv2D(channel, (kernel, kernel), strides = stride, padding = 'same')(input_)
@@ -37,6 +39,7 @@ class CycleGAN:
         
         conv_t = Conv2DTranspose(channel, (kernel, kernel), strides = (stride, stride),
                                  padding = 'same')(input_)
+
         concat = concatenate([conv_t, concat_])
         if drop_p != None: concat = Dropout(drop_p)(concat)
         
@@ -71,7 +74,7 @@ class CycleGAN:
         u9, _   = self.conv_block(u9, 128, 3)
         
         ## 출력 레이어
-        outputs = self.conv_block(u9, 3, 1, activation = 'tanh')
+        outputs, _ = self.conv_block(u9, 3, 1, activation = 'tanh')
         
         return Model(inputs, outputs)
         
@@ -83,14 +86,19 @@ class CycleGAN:
                                 name  = 'target_image'
                             )
         
-        
-        x, _    = self.conv_block(target_image,  64, 4, strides = 2, activation = 'LeakyReLU')
-        x, _    = self.conv_block(           x, 128, 4, strides = 2, activation = 'LeakyReLU')
-        x, _    = self.conv_block(           x, 256, 4, strides = 2, activation = 'LeakyReLU')
+        print(target_image.shape)
+        x, _    = self.conv_block(target_image,  64, 4, stride = 2, activation = 'LeakyReLU')
+        print(x.shape)
+        x, _    = self.conv_block(           x, 128, 4, stride = 2, activation = 'LeakyReLU')
+        print(x.shape)
+        x, _    = self.conv_block(           x, 256, 4, stride = 2, activation = 'LeakyReLU')
+        print(x.shape)
         
         x       = Conv2D(512, 4, strides = 1, padding = 'same')(x)
+        print(x.shape)
         x       = BatchNormalization()(x)
         x       = LeakyReLU()(x)
         outputs = Conv2D(1, 3, strides = 1)(x)
-        
-        return Model(inputs = [targetImage], outputs = outputs)
+        print(outputs.shape)
+        print('\n\n------------\n\n')
+        return Model(inputs = [target_image], outputs = outputs)
