@@ -3,8 +3,10 @@
 DOODLE/data/**/*.* 
 Dataset/**/*.*
 Dataset/**/*
+**/*.gltf
 **/*.docx
 **/*.json
+**/*.tsv
 **/*.csv
 **/*.jpg
 **/*.png
@@ -19,10 +21,14 @@ Dataset/**/*
 
 ## 굳이 필요없는 애들
 **/**/.ipynb_checkpoints
-**/output/**/*.*
-**/Template.ipynb
 **/Untitled*.ipynb
+**/*.out.tfevents
+**/Template.ipynb
+**/output/**/*.*
 **/*-checkpoint*
+**/Cargo.lock
+**/*_variable
+**/target/*
 **/*.onnx
 **/*.pth
 **/*.ttf
