@@ -2,8 +2,8 @@
 **/Object Detection/**/*.*
 DOODLE/data/**/*.* 
 DOODLE/**/*.txt
-Dataset/**/*.*
-Dataset/**/*
+**/Dataset/**/*.*
+**/Dataset/**/*
 **/*.gltf
 **/*.docx
 **/*.json
