@@ -1,6 +1,7 @@
 ## 데이터 보호
 **/Object Detection/**/*.*
 DOODLE/data/**/*.* 
+DOODLE/**/*.txt
 Dataset/**/*.*
 Dataset/**/*
 **/*.gltf
@@ -12,7 +13,6 @@ Dataset/**/*
 **/*.png
 **/*.npz
 **/*.tar
-**/*.txt
 **/*.xml
 **/*.zip
 **/*.db
@@ -23,6 +23,8 @@ Dataset/**/*
 **/**/*.log
 
 ## 굳이 필요없는 애들
+python-study/Coding Test/Project Euler/texts/names.txt
+python-study/Coding Test/Project Euler/texts/words.txt
 **/**/.ipynb_checkpoints
 **/Untitled*.ipynb
 **/*.out.tfevents
