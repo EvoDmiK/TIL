@@ -21,7 +21,7 @@ def repair_json(json_path: str, type_: str = 'config') -> dict:
     except:
         
         print(f'[WARN] {type_}.json 파일이 손상되어 데이터를 복구 합니다.')
-        texts = open(f'{ROOT_PATH}/BACKUPS/configs/{type_}/.txt', 'r').readlines()
+        texts = open(f'{ROOT_PATH}/BACKUPS/configs/{type_}.txt', 'r').readlines()
         
         texts = [text.split() for text in texts]
         json_ = {name : text for name, text in texts}
