@@ -9,15 +9,16 @@ def print_result(text: str, results: tuple):
 ## 조회 함수
 def select(cursor, text : str, table_name: str, column: str = '*',
            order: str = None, cond: str = None, limit_k: str = None, 
-           is_print: bool = True
+           group: str = None, is_print: bool = True
     ):
 
     query    = f'select {column} from {table_name}'
     
-    if  cond: query   += f' where {cond}'
-    if order: query   += f' order by {order}'
+    if    cond: query += f' where {cond}'
+    if   group: query += f' group by {group}'
+    if   order: query += f' order by {order}'
     if limit_k: query += f' limit {limit_k}'
-    
+
     print(f'[query] {query};\n')
     cursor.execute(query)
     
