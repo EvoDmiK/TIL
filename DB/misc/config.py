@@ -4,7 +4,7 @@ import os
 from easydict import EasyDict as edict
 
 SEP         = os.path.sep
-ROOT_PATH   = SEP.join(os.getcwd().split(SEP)[:-5])
+ROOT_PATH   = SEP.join(os.getcwd().split(SEP)[:-4])
 
 CONFIG_PATH = f'{ROOT_PATH}/utils/configs/config.json'
 PORT_PATH   = f'{ROOT_PATH}/utils/configs/ports.json'
