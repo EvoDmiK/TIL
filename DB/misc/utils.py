@@ -44,8 +44,15 @@ def insert_(cursor, table_name: str, values: str,
             
             
     print(f'[query] {query};')
-    print('[INFO] 데이터 삽입 완료 \n')
-    cursor.execute(query)
+
+
+    try: 
+        cursor.execute(query)
+        print('[INFO] 데이터 삽입 완료 \n')
+        
+    except Exception as e:
+        print(f'[ERROR] {e}')
+        print('[ERROR] 쿼리에 문제가 발생하였습니다.')
 
 
 ## 테이블에 있는 레코드를 제거해주는 함수
