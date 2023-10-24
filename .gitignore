@@ -4,6 +4,7 @@ DOODLE/data/**/*.*
 DOODLE/**/*.txt
 **/Dataset/**/*.*
 **/Dataset/**/*
+**/**/*.ubuntu
 **/*.gltf
 **/*.docx
 **/*.json
