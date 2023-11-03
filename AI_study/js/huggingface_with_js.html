@@ -1,0 +1,276 @@
+<html lang="en">
+	<head>
+		<title>EXP HUGGINGFACE</title>
+	</head>
+	<body>
+        <h1>HUGGINGFACE TEST</h1>
+
+        <input id = "prompt"> 
+		<button type="button" id="inference">translate</button>
+
+        <div id="translated"></div>
+
+        <script async src="https://docs.opencv.org/4.x/opencv.js"></script>
+		<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/mathjs@11.8.0/lib/browser/math.min.js"></script>
+
+		<script type="module">
+            import { pipeline } from "https://cdn.jsdelivr.net/npm/@xenova/transformers@2.7.0";
+            
+            // Blob 이미지를 표시해주는 함수
+            function displayImage(blob, id, divId){
+
+                const container = document.getElementById(divId);
+                const blobUrl   = URL.createObjectURL(blob);
+                const img       = document.createElement("img");
+
+                img.setAttribute("id", id);
+                img.src = blobUrl;
+
+                container.appendChild(img);
+            };
+
+
+			// onnxruntime tensor를 html 이미지로 시각화 해주는 함수
+			function to_html(image, id = "predicted"){
+
+				console.time("post-processing");
+
+				const imageHTML   = image.toImageData();
+
+				var canvasHTML    = document.getElementById(id);
+				canvasHTML.width  = imageHTML.width;
+				canvasHTML.height = imageHTML.height;
+
+				let context       = canvasHTML.getContext("2d");
+				context.putImageData(imageHTML, 0, 0);
+				console.timeEnd("post-processing");
+
+			}
+
+
+            // 이미지를 onnxruntime tensor로 변환해주는 함수
+            function ImageToTensor(image){
+                
+                var C = image._size[1];
+                var H = image._size[2];
+                var W = image._size[3];
+
+                var tensor = math.reshape(image._data, [1, C * H * W]);
+                tensor     = new ort.Tensor("float32", tensor[0], [1, C, H, W]);
+
+                return tensor;
+            }
+
+
+            // 이미지를 math.js Matrix로 변환해주는 함수
+            function ImageToMatrix(src, id){
+
+                let dst   = new cv.Mat();
+                let dst_  = new cv.Mat();
+
+                let dsize = new cv.Size(256, 256);
+                cv.resize(src, dst, dsize, 0, 0, cv.INTER_AREA);
+
+                if (id == "rgb"){
+                    cv.cvtColor(dst, dst_, cv.COLOR_BGRA2BGR);
+                    var inputDims = [1, 3, 256, 256];
+                }
+                else if (id == "mask"){
+                    cv.cvtColor(dst, dst_, cv.COLOR_BGRA2GRAY)
+                    var inputDims = [1, 1, 256, 256];
+                }
+
+                var blob = cv.blobFromImage(dst_, 1 / 255.0);
+                src.delete(); dst.delete(); dst_.delete();
+
+                var tensor = new ort.Tensor("float32", blob.data32F, inputDims);
+                return math.reshape(math.matrix(Array.from(tensor.data)), inputDims)
+            };
+
+
+			// 이미지 전, 후처리 해주는 함수
+            function MatOperation(image, mask, pred = null){
+
+                var masked = mask.map(function(x){ return 1 - x });
+
+                // predict 값이 없는 경우 mask 값을 더해줌.
+                if (pred === null){
+                    masked = math.add(math.dotMultiply(image, masked), mask);
+                }
+                // predict 값이 있는 경우 predict 값을 더해줌.
+                else{
+                    pred   = math.reshape(math.matrix(Array.from(pred.data)), [1, 3, 256, 256]);
+                    masked = math.add(math.dotMultiply(image, masked), math.dotMultiply(mask, pred));
+                }
+                return masked;
+            };
+
+
+			// infer 버튼 누르면 시작 되는 함수
+			async function inference(session){
+
+                // RGB, 마스크 이미지 입력 버튼
+                const imageInput = document.getElementById("imageUpload");
+                const maskInput  = document.getElementById("maskUpload");
+
+                // rgb Blob, mask Blob, 전처리 된 masked 이미지 기본 값.
+                var [rBlob, mBlob, masked]  = [null, null, null];
+                
+                // 업로드 한 RGB, MASK 이미지를 Blob으로 변환
+                rBlob = await FileToBlob(imageInput.files[0], "rgb");
+                mBlob = await FileToBlob(maskInput.files[0] , "mask" );
+
+                // RGB, MASK Blob을 ImageData로 변환
+                var rImage = await BlobToImage(rBlob);
+                var mImage = await BlobToImage(mBlob);
+
+                // ImageData를 cv형 Matrix로 변환
+                rImage     = cv.matFromImageData(rImage);
+                mImage     = cv.matFromImageData(mImage);
+
+                // cv Matrix로 전처리 후 math.js matrix로 변환
+                rImage     = ImageToMatrix(rImage, "rgb");
+                mImage     = ImageToMatrix(mImage, "mask");
+
+                // 마지막 전처리 후 onnxruntime 용 tensor로 변환
+                masked        = MatOperation(rImage, mImage);
+                masked_tensor = ImageToTensor(masked);
+                mTensor       = ImageToTensor(mImage);
+
+                session.then(
+                    sess => {
+
+                        console.log("Inference started.")
+                        // onnxruntime 모델에 들어갈 입력값 설정.
+                        const feeds = {image : masked_tensor, mask : mTensor};
+                        console.time("inference");
+                        sess.run(feeds).then( pred => {
+
+                            // 후처리 알고리즘 추가
+                            var output = MatOperation(rImage, mImage, pred.gen_image);
+                            // 추론 결과 predicted 캔버스에 그리기
+                            to_html(ImageToTensor(output));
+                        });
+                        console.timeEnd("inference");
+                        console.log("Inference complete.")
+                    }
+                );
+			};
+
+
+            // 업로드 된 이미지를 Blob으로 변환 시켜주는 함수.
+            const FileToBlob = function (file, id){
+
+                // file이 업로드 되어 있는 경우에
+                if (typeof file != "undefined"){
+                    console.log(id + "image has been uploaded.");
+
+                    return new Promise((resolve, reject) => {
+
+                        // 파일 리더를 통해 업로드 한 파일을 base 64로 변환
+                        const reader = new FileReader();
+                        reader.readAsDataURL(file);
+                        
+                        reader.onload  = () => resolve(reader.result);
+                        reader.onerror = reject;
+                    }).then(base64 => {
+
+                        // base64 데이터에서 fileType 제외한 부분 디코딩
+                        // e.g.) data:image/png;base64,iVBORw0KGgoAAAANS...
+                        //       -> iVBORw0KGgoAAAANS...
+                        const decoded  = atob(base64.split(",")[1]);
+
+                        // base64 데이터에서 fileType 추출해 주는 부분.
+                        // e.g.) data:image/png;base64,iVBORw0KGgoAAAANS... 
+                        //       -> data:image/png -> image/png 
+                        const fileType = base64.split(";")[0].split(":")[1];
+                        
+                        var arrayBuffer = new ArrayBuffer(decoded.length);
+                        var _ia         = new Uint8Array(arrayBuffer);
+
+                        for (var idx = 0; idx < decoded.length; idx++){
+                            _ia[idx] = decoded.charCodeAt(idx) & 0xff;
+                        }
+
+                        var   dataview = new DataView(arrayBuffer);
+                        const blob     = new Blob([dataview], {type : fileType});
+
+                        // Blob 이미지 데이터가 제대로 들어갔는지 표시
+                        displayImage(blob, id, id + "_div");
+                        return blob;
+                    })
+                }
+                // 파일이 업로드 되어 있지 않은 경우 
+                else {alert(id + "이미지를 업로드 해주십시오.")}
+            };
+
+            
+            // Blob을 Image Data로 변환 시켜주는 함수.
+            const BlobToImage = function(blob){
+                let blobUrl = URL.createObjectURL(blob);
+                return new Promise((resolve, reject) => {
+
+                    let img     = new Image();
+                    img.onload  = () => resolve(img);
+                    img.onerror = err => reject(err);
+                    img.src     = blobUrl; 
+                }).then(img => {
+
+                    // 이제 필요없는 blobURL 삭제
+                    URL.revokeObjectURL(blobUrl);
+                    let [w, h]      = [img.width, img.height];
+
+                    let canvas    = document.createElement("canvas");
+                    let ctx       = canvas.getContext("2d");
+
+                    canvas.width  = w;
+                    canvas.height = h;
+
+                    // blob 데이터로 얻은 데이터 canvas에 그리기
+                    ctx.drawImage(img, 0, 0);
+
+                    // canvas에 그려진 데이터 반환
+                    return ctx.getImageData(0, 0, w, h);
+                })
+            }
+
+            function load_pipe(){
+                console.time("load pipeline...");
+                var pipe = pipeline("translation", "Xenova/nllb-200-distilled-600M");
+                console.timeEnd("load pipeline...");
+                
+                return pipe;
+            };
+
+            function display_translated(translated){
+                document.getElementById("translated").innerText = translated;
+            };
+
+            async function inference_(pipe){
+
+                console.log("translate start");
+                pipe.then(
+                    sess => {
+                        const prompt = document.getElementById("prompt").value;
+
+                        sess(prompt,
+                             {src_lang : "kor_Hang", tgt_lang : "eng_Latn"}).then(result => {
+                                display_translated('')
+                                display_translated(result[0].translation_text);
+                             });
+                    }
+                );
+            };
+
+
+            const pipe    = load_pipe();
+            var infer_btn = document.getElementById("inference");
+
+            infer_btn.addEventListener("click", function(){
+                inference_(pipe).then();
+            });
+		</script>
+
+	</body>
+</html>
