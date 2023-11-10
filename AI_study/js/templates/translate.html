@@ -1,0 +1,58 @@
+<html lang="en">
+	<head>
+		<title>한국어 -> 영어 번역기 입니다~</title>
+	</head>
+	<body>
+        <h1>This is KOR -> ENG Translator</h1>
+
+        <input id = "prompt"> 
+		<button type="button" id="inference">translate</button>
+
+        <div id="translated"><label id = "translated_lb">여기에 번역된 결과가 표시됩니다.</label></div>
+
+		<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script type="module">
+
+            // 빠이프 라인 가져오기 
+            import { pipeline } from "https://cdn.jsdelivr.net/npm/@xenova/transformers@2.7.0";
+            
+
+            function load_pipe(){
+                console.time("load pipeline...");
+                var pipe = pipeline("translation", "Xenova/nllb-200-distilled-600M");
+                console.timeEnd("load pipeline...");
+                
+                return pipe;
+            };
+
+            function display_translated(translated){
+                document.getElementById("translated_lb").innerText = translated;
+            };
+
+            async function inference(pipe){
+
+                console.log("translate start");
+                pipe.then(
+                    sess => {
+                        const prompt = document.getElementById("prompt").value;
+
+                        sess(prompt,
+                             {src_lang : "kor_Hang", tgt_lang : "eng_Latn"}).then(result => {
+                                display_translated('')
+                                display_translated(result[0].translation_text);
+                             });
+                    }
+                );
+            };
+
+
+            const pipe    = load_pipe();
+            var infer_btn = document.getElementById("inference");
+
+            infer_btn.addEventListener("click", function(){
+                inference(pipe).then();
+            });
+		</script>
+
+	</body>
+</html>
