@@ -15,51 +15,54 @@
 
         <script async src="https://docs.opencv.org/4.x/opencv.js"></script>
 		<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/mathjs@11.8.0/lib/browser/math.min.js"></script>
 
-		<script type="module">
+        <script type="module">
             import { pipeline } from "https://cdn.jsdelivr.net/npm/@xenova/transformers@2.7.0";
             
-            const FileToBlob = function(file){
-
-                if (typeof file != "indefiend"){
-                    console.log("image has been uploaded.");
-
-                    return new Promise((resolve, reject) => {
-                        const reader = new FileReader();
-                        reader.readAsDataURL(file);
-                    }).then(base64 => {
-
-                        const decoded = atob(base64.split(',')[1]);
-                        console.log(decoded);
-                    })
-                }
-            }
-
-
-            async function inference(pipe){
+            
+            async function inference(detector){
                 
                 const imageInput = document.getElementById("inputImage");
-                var blob_        = null;
-                blob_            = await FileToBlob(imageInput.files[0]);
+                const objectURL  = URL.createObjectURL(imageInput.files[0]);
+                
+                detector.then(
+                    sess => {
+                        console.time('inferece');
+                        sess(objectURL, {threshold : 0.9}).then(
+                            results => {
+
+                                const box  = results[0].box
+                                const xmin = box.xmin;
+                                const xmax = box.xmax;
+
+                                const ymin = box.ymin;
+                                const ymax = box.ymax;
+
+                                console.log(box);
+                                console.log(xmin, xmax);
+                                console.log(ymin, ymax);
+                        });
+                        console.timeEnd('inferece');
+                    }
+                )
 
             }
 
-            function load_pipe(){
+
+            function load_pipeline(){
                 console.time("load pipeline...");
-                var pipe = pipeline("translation", "Xenova/nllb-200-distilled-600M");
+                var pipe = pipeline("object-detection", "Xenova/yolos-small");
                 console.timeEnd("load pipeline...");
                 
                 return pipe;
             };
 
             
-
-            const pipe    = load_pipe();
-            var infer_btn = document.getElementById("inference");
+            const detector      = load_pipeline();
+            var   infer_btn = document.getElementById("inference");
 
             infer_btn.addEventListener("click", function(){
-                inference(pipe).then();
+                inference(detector).then();
             });
 		</script>
 
