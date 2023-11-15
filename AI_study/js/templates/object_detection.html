@@ -19,36 +19,6 @@
         <script type="module">
             import { pipeline } from "https://cdn.jsdelivr.net/npm/@xenova/transformers@2.7.0";
             
-            
-            async function inference(detector){
-                
-                const imageInput = document.getElementById("inputImage");
-                const objectURL  = URL.createObjectURL(imageInput.files[0]);
-                
-                detector.then(
-                    sess => {
-                        console.time('inferece');
-                        sess(objectURL, {threshold : 0.9}).then(
-                            results => {
-
-                                const box  = results[0].box
-                                const xmin = box.xmin;
-                                const xmax = box.xmax;
-
-                                const ymin = box.ymin;
-                                const ymax = box.ymax;
-
-                                console.log(box);
-                                console.log(xmin, xmax);
-                                console.log(ymin, ymax);
-                        });
-                        console.timeEnd('inferece');
-                    }
-                )
-
-            }
-
-
             function load_pipeline(){
                 console.time("load pipeline...");
                 var pipe = pipeline("object-detection", "Xenova/yolos-small");
@@ -58,8 +28,101 @@
             };
 
             
+            function File2Canvas(input_, div_id){
+
+                const file_div = document.getElementById(div_id);
+                const canvas   = document.createElement("canvas");
+                const reader   = new FileReader();
+                const image    = new Image();
+
+                const context  = canvas.getContext("2d");
+                reader.readAsDataURL(input_);
+                reader.onload = (e) => {
+
+                    image.src = e.target.result;
+                    image.onload = () => {
+
+                        canvas.width  =  image.width;
+                        canvas.height = image.height;
+
+                        context.drawImage(image, 0, 0);
+                    }
+                }
+
+                canvas.setAttribute("id", "original_image");
+                file_div.appendChild(canvas);
+                return image
+            };
+
+
+            function DrawRectangle(bboxes){
+
+                let image = cv.imread("original_image");
+                var dst   = new cv.Mat();
+
+                for (var idx = 0; idx < bboxes.length; idx++){
+                    
+                    console.log(idx);
+                    console.log('여기 다시 도니?');
+                    var bbox = bboxes[idx];
+
+                    var xmin = bbox.box.xmin;
+                    var xmax = bbox.box.xmax;
+                    var ymin = bbox.box.ymin;
+                    var ymax = bbox.box.ymax;
+
+                    var rect = new cv.Rect(xmin, ymin, xmax, ymax);
+                    console.log(bbox);
+                    console.log(xmin, xmax, ymin, ymax);
+                    console.log(rect);
+
+                    // dst      = image.roi(rect);
+                    console.log(image);
+                    console.log('설마 여까지도 안내려 왔을라구~~');
+                    
+                console.log('여까지는 내려왔을걸?');
+                const file_div = document.getElementById("detected");
+                const canvas   = document.createElement("canvas");
+                canvas.setAttribute("id", "detected_image");
+
+                file_div.appendChild(canvas);
+                cv.imshow("detected_image", dst);
+
+                image.delete(); dst.delete();
+                };
+            };
+
+
+            async function inference(detector){
+                
+                console.log('inference');
+                const objectURL = URL.createObjectURL(imageInput.files[0]);
+
+                detector.then(
+                    sess => {
+                        console.time('inferece');
+                        sess(objectURL, {threshold : 0.9}).then(
+                            results => {
+                            DrawRectangle(results);
+                        });
+                        console.timeEnd('inferece');
+                    }
+                )
+
+            }
+            
+
             const detector      = load_pipeline();
+
+            const imageInput = document.getElementById("inputImage");
             var   infer_btn = document.getElementById("inference");
+
+            
+            imageInput.onchange = () => {
+                var image_url = '';
+                image_url     = File2Canvas(imageInput.files[0], 'original');
+            };
+                
 
             infer_btn.addEventListener("click", function(){
                 inference(detector).then();
