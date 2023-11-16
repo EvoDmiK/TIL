@@ -19,7 +19,8 @@
         <script type="module">
             import { pipeline } from "https://cdn.jsdelivr.net/npm/@xenova/transformers@2.7.0";
             
-            function load_pipeline(){
+            // 모델 빠이쁘라인 가져오는 부분.
+            async function load_pipeline(){
                 console.time("load pipeline...");
                 var pipe = pipeline("object-detection", "Xenova/yolos-small");
                 console.timeEnd("load pipeline...");
@@ -28,6 +29,7 @@
             };
 
             
+            // 파일이 업로드 되면, canvas에 바로 디스플레이
             function File2Canvas(input_, div_id){
 
                 const file_div = document.getElementById(div_id);
@@ -55,78 +57,76 @@
             };
 
 
+            // 이미지에서 검출해낸 객체에 bbox 그려주는 부분.
             function DrawRectangle(bboxes){
 
                 let image = cv.imread("original_image");
-                var dst   = new cv.Mat();
+                let color = new cv.Scalar(128, 128, 128, 128);
 
                 for (var idx = 0; idx < bboxes.length; idx++){
                     
-                    console.log(idx);
-                    console.log('여기 다시 도니?');
+                    // 검출한 바운딩 박스들에서 인덱싱하여 박스 좌표 가져옴.
                     var bbox = bboxes[idx];
 
                     var xmin = bbox.box.xmin;
                     var xmax = bbox.box.xmax;
                     var ymin = bbox.box.ymin;
                     var ymax = bbox.box.ymax;
-
-                    var rect = new cv.Rect(xmin, ymin, xmax, ymax);
-                    console.log(bbox);
-                    console.log(xmin, xmax, ymin, ymax);
-                    console.log(rect);
-
-                    // dst      = image.roi(rect);
-                    console.log(image);
-                    console.log('설마 여까지도 안내려 왔을라구~~');
                     
-                console.log('여까지는 내려왔을걸?');
+                    // 첫번째 점, 두 번째 점 객체 생성
+                    var pt1  = new cv.Point(xmin, ymin);
+                    var pt2  = new cv.Point(xmax, ymax);
+
+                    cv.rectangle(image, pt1, pt2, color, 2);
+                
+                // id로 detected를 가지고 있는 div 태그 가져오기 
                 const file_div = document.getElementById("detected");
+
+                // 바운딩 박스가 그려질 이미지가 담길 canvas 생성
                 const canvas   = document.createElement("canvas");
                 canvas.setAttribute("id", "detected_image");
-
+                
+                // div#detected > canvas#detected_image 추가
                 file_div.appendChild(canvas);
-                cv.imshow("detected_image", dst);
-
-                image.delete(); dst.delete();
+                cv.imshow("detected_image", image);
                 };
             };
 
 
-            async function inference(detector){
+            // 추론 버튼이 눌리면 실행되는 YOLO 추론 함수
+            async function inference(detector, file){
                 
                 console.log('inference');
-                const objectURL = URL.createObjectURL(imageInput.files[0]);
+                const objectURL = URL.createObjectURL(file);
 
-                detector.then(
-                    sess => {
-                        console.time('inferece');
-                        sess(objectURL, {threshold : 0.9}).then(
-                            results => {
-                            DrawRectangle(results);
-                        });
-                        console.timeEnd('inferece');
-                    }
-                )
+                console.time('inferece');
+                const results = await detector(objectURL, {threshold : 0.9})
+                DrawRectangle(results);
+                console.timeEnd('inferece');
 
             }
             
 
-            const detector      = load_pipeline();
+            async function main(){
+                const detector   = await load_pipeline();
 
-            const imageInput = document.getElementById("inputImage");
-            var   infer_btn = document.getElementById("inference");
+                const imageInput = document.getElementById("inputImage");
+                var   infer_btn  = document.getElementById("inference");
 
-            
-            imageInput.onchange = () => {
-                var image_url = '';
-                image_url     = File2Canvas(imageInput.files[0], 'original');
-            };
                 
+                imageInput.onchange = () => {
+                    var image_url = '';
+                    image_url     = File2Canvas(imageInput.files[0], 'original');
+                };
+                    
 
-            infer_btn.addEventListener("click", function(){
-                inference(detector).then();
-            });
+                infer_btn.addEventListener("click", function(){
+                    inference(detector, imageInput.files[0]).then();
+                });
+            }
+
+
+            main();
 		</script>
 
 	</body>
