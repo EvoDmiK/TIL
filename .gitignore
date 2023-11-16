@@ -1,8 +1,9 @@
 ## 데이터 보호
 **/Object Detection/**/*.*
-DOODLE/data/**/*.* 
-DOODLE/**/*.txt
+DOODLE/data/**/*.*
 **/Dataset/**/*.*
+DOODLE/**/*.txt
+**/**/db.sqlite3
 **/Dataset/**/*
 **/**/*.ubuntu
 **/*.gltf
