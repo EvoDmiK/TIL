@@ -1,0 +1,113 @@
+<html>
+    <head><title>DETR RESNET 50 세그멘테이션 모델입니다~</title></head>
+    <body>
+        <h1>This is DETR Image Segmentation</h1>
+
+        <input  type="file"   id="inputImage" accept="image/*">
+        <button type="button" id="inference">inference</button>
+
+        <div class="row">
+            <div id= "original">여기  원본 이미지가 표시됩니다.</div>
+            <div id=     "mask">여기 마스크 이미지가 표시됩니다.</div>
+            <div id="segmented">여기 분할된 이미지가 표시됩니다.</div>
+        </div>
+    </body>
+
+    <script async src="https://docs.opencv.org/4.x/opencv.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    
+    <script type="module">
+        import { pipeline } from "https://cdn.jsdelivr.net/npm/@xenova/transformers@2.7.0";
+
+        async function load_pipeline(){
+
+            var pipe = pipeline("image-segmentation", "Xenova/detr-resnet-50-panoptic");
+            console.log("빠이쁘 로딩 완.");
+
+            return pipe
+        };
+
+        
+        function File2Canvas(input_, div_id){
+
+            const file_div = document.getElementById(div_id);
+            const canvas   = document.createElement("canvas");
+            const reader   = new FileReader();
+            const image    = new Image();
+            const ctx      = canvas.getContext("2d");
+
+            reader.readAsDataURL(input_);
+            reader.onload = (e) => {
+
+                image.src    = e.target.result;
+                image.onload = () => {
+
+                    canvas.width  =  image.width;
+                    canvas.height = image.height;
+
+                    ctx.drawImage(image, 0, 0);
+                };
+            };
+
+            canvas.setAttribute("id", "original_image");
+            file_div.appendChild(canvas);
+        };
+
+
+        function draw_mask(masks, id = "mask"){
+
+            var maskImage = document.getElementById("mask");
+            const canvas  = document.createElement("canvas");
+
+            for (var idx = 0; idx < masks.length; idx++){
+
+                var mask   = masks[idx].mask;
+                var width  =      mask.width;
+                var height =     mask.height;
+
+                var context   = canvas.getContext('2d');
+                var imageData = context.createImageData(width, height);
+
+                console.log(mask.data);
+                console.log(imageData);
+
+                imageData.data.set(mask.data);
+                context.putImageData(imageData, 0, 0);
+
+                canvas.setAttribute("id", "mask_image");
+                maskImage.appendChild(canvas);
+            };
+
+
+        };
+
+
+        async function inference(pipe, file){
+
+            console.log("infernece");
+            const objectURL = URL.createObjectURL(file);
+            const results   = await pipe(objectURL);
+
+            draw_mask(results);
+        }
+
+        async function main(){
+
+            const segmentor  = await load_pipeline();
+            const imageInput = document.getElementById("inputImage");
+            var   inferBtn   = document.getElementById("inference"); 
+
+
+            imageInput.onchange = () => {
+                File2Canvas(imageInput.files[0], "original");
+            }
+
+            inferBtn.addEventListener("click", function(){
+                inference(segmentor, imageInput.files[0]).then();
+            });
+        };
+
+        main();
+    </script>
+
+</html>
