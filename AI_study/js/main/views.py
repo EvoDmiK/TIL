@@ -14,3 +14,8 @@ def translate(request):
 def object_detection(request):
 
     return render(request, 'object_detection.html', context = {})
+
+
+def segmentation(request):
+
+    return render(request, 'segmentation.html', context = {})
