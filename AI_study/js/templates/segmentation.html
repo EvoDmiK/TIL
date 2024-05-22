@@ -15,7 +15,8 @@
 
     <script async src="https://docs.opencv.org/4.x/opencv.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/mathjs@11.8.0/lib/browser/math.min.js"></script>
+
     <script type="module">
         import { pipeline } from "https://cdn.jsdelivr.net/npm/@xenova/transformers@2.7.0";
 
@@ -54,7 +55,14 @@
         };
 
 
-        function draw_mask(masks, id = "mask"){
+        function zeromask(width, height){
+
+            var zeroArray = Array(width * height).fill(0);
+            return math.reshape(math.matrix(zeroArray), [1, width, height]);
+        }
+
+
+        function DrawMask(masks, id = "mask"){
 
             var maskImage = document.getElementById("mask");
             const canvas  = document.createElement("canvas");
@@ -64,6 +72,8 @@
                 var mask   = masks[idx].mask;
                 var width  =      mask.width;
                 var height =     mask.height;
+                
+                console.log(zeromask(width, height));
 
                 var context   = canvas.getContext('2d');
                 var imageData = context.createImageData(width, height);
@@ -77,8 +87,6 @@
                 canvas.setAttribute("id", "mask_image");
                 maskImage.appendChild(canvas);
             };
-
-
         };
 
 
@@ -88,7 +96,7 @@
             const objectURL = URL.createObjectURL(file);
             const results   = await pipe(objectURL);
 
-            draw_mask(results);
+            DrawMask(results);
         }
 
         async function main(){
