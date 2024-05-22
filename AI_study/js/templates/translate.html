@@ -25,33 +25,37 @@
                 return pipe;
             };
 
+            
             function display_translated(translated){
                 document.getElementById("translated_lb").innerText = translated;
             };
 
+            
             async function inference(pipe){
 
                 console.log("translate start");
-                pipe.then(
-                    sess => {
-                        const prompt = document.getElementById("prompt").value;
 
-                        sess(prompt,
-                             {src_lang : "kor_Hang", tgt_lang : "eng_Latn"}).then(result => {
-                                display_translated('')
-                                display_translated(result[0].translation_text);
-                             });
-                    }
-                );
+                const context     = {src_lang : "kor_Hang", tgt_lang : "eng_Latin"};
+                const prompt     = document.getElementById("prompt").value;
+                const translated = pipe(prompt, context)
+                
+                display_translated('')
+                display_translated(translated[0].translation_text);
+
             };
 
 
-            const pipe    = load_pipe();
-            var infer_btn = document.getElementById("inference");
+            async function main(){
 
-            infer_btn.addEventListener("click", function(){
-                inference(pipe).then();
-            });
+                const translator = await load_pipe();
+                var inferBtn     = document.getElementById("inference");
+
+                inferBtn.addEventListener("click", function(){
+                    inference(translator).then();
+                });
+            }
+
+            main();  
 		</script>
 
 	</body>
