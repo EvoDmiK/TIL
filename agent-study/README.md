@@ -5,13 +5,13 @@ LangChain·LangGraph 등 LLM 에이전트 프레임워크를 공부하고, 모�
 | 경로 | 내용 |
 |---|---|
 | [langchain/01_langchain_basics.ipynb](langchain/01_langchain_basics.ipynb) | 모델 호출, 스트리밍, 프롬프트 템플릿(LCEL), 구조화 출력, 도구 호출 |
-| [langchain/02_langgraph_basics.ipynb](langchain/02_langgraph_basics.ipynb) | StateGraph 기초, 조건 분기 라우팅, `create_agent` + 체크포인터 메모리 |
-| [langchain/src/common.py](langchain/src/common.py) | `.env` 로드, `setup_mlflow()`, `get_model()` |
-| `langgraph/` | LangGraph 심화 (준비 중) |
+| [langgraph/02_langgraph_basics.ipynb](langgraph/02_langgraph_basics.ipynb) | StateGraph 기초, 조건 분기 라우팅, `create_agent` + 체크포인터 메모리 |
+| [common/common.py](common/common.py) | `.env` 로드, `setup_mlflow()`, `get_model()` — 노트북에서 `from common import get_model` 로 쓴다 |
 
 ## 세팅
 
 `agent-study` 폴더 전체가 uv 프로젝트 하나이고, 가상환경은 `agent-study/.venv` 를 같이 쓴다.
+`uv sync` 를 하면 `common/` 이 editable 패키지로 설치되므로, 어느 하위 폴더의 노트북에서든 `from common import ...` 가 된다. `common.py` 를 고치면 커널만 재시작하면 반영된다.
 
 ```bash
 cd agent-study

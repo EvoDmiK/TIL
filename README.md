@@ -17,8 +17,9 @@ LLM 에이전트 프레임워크 공부. Gemini·Claude·GPT 모델로 실습하
 
 | 폴더 | 내용 |
 |---|---|
-| [langchain](agent-study/langchain) | LangChain 기초(모델 호출, 스트리밍, LCEL, 구조화 출력, 도구 호출), LangGraph 기초(StateGraph, 조건 분기, `create_agent` + 체크포인터) |
-| `langgraph` | LangGraph 심화 (준비 중) |
+| [langchain](agent-study/langchain) | LangChain 기초 — 모델 호출, 스트리밍, LCEL, 구조화 출력, 도구 호출 |
+| [langgraph](agent-study/langgraph) | LangGraph 기초 — StateGraph, 조건 분기, `create_agent` + 체크포인터 |
+| [common](agent-study/common) | 노트북 공통 코드 — `.env` 로드, MLflow 연결, 모델 생성 |
 
 세팅 방법은 [agent-study/README.md](agent-study/README.md)를 참고한다.
 
