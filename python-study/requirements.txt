@@ -1,0 +1,16 @@
+easydict==1.10
+gradio
+imutils==0.5.4
+ipykernel==6.25.2
+matplotlib==3.8.0
+mcrcon
+noise
+numpy==1.26.0
+openai<1.0
+opencv-python==4.8.0.76
+pandas==2.1.0
+Pillow==10.0.1
+PyKakao
+requests==2.31.0
+scikit-image
+scipy==1.11.2
