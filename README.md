@@ -13,13 +13,14 @@ Today I Learned — 공부한 내용을 주제별로 정리하는 저장소
 ---
 
 ## agent-study
-LLM 에이전트 프레임워크 공부. Claude 모델로 실습하고, 모든 실행을 MLflow에 트레이스로 남긴다.
+LLM 에이전트 프레임워크 공부. Gemini·Claude·GPT 모델로 실습하고, 모든 실행을 MLflow에 트레이스로 남긴다.
 
 | 폴더 | 내용 |
 |---|---|
 | [langchain](agent-study/langchain) | LangChain 기초(모델 호출, 스트리밍, LCEL, 구조화 출력, 도구 호출), LangGraph 기초(StateGraph, 조건 분기, `create_agent` + 체크포인터) |
+| `langgraph` | LangGraph 심화 (준비 중) |
 
-세팅 방법은 [langchain/README.md](agent-study/langchain/README.md)를 참고한다.
+세팅 방법은 [agent-study/README.md](agent-study/README.md)를 참고한다.
 
 ## ai-study
 인공지능 이론과 모델 구현 공부.
@@ -121,14 +122,12 @@ Kaggle 데이터셋으로 한 실습.
 
 ## 개발 환경
 
-- **agent-study**: [uv](https://docs.astral.sh/uv/) workspace로 관리한다. `agent-study/.venv` 하나를 하위 프로젝트가 같이 쓴다.
+- **agent-study**: [uv](https://docs.astral.sh/uv/) 프로젝트 하나로 관리한다. 의존성은 [agent-study/pyproject.toml](agent-study/pyproject.toml)에 있고, 하위 폴더가 모두 `agent-study/.venv`를 같이 쓴다.
 
   ```bash
   cd agent-study
-  uv sync --all-packages
+  uv sync
   ```
-
-  하위 프로젝트를 추가하면 [agent-study/pyproject.toml](agent-study/pyproject.toml)의 `members`에 등록한다.
 
 - **그 외 파이썬 폴더**: `ai-study`, `data-science`, `db`, `python-study`, `bioinformatics/Python`에 있는 `requirements.txt`를 참고한다. 예전에 `pip freeze`로 뽑은 목록이라 최신 Python에서는 버전을 풀어서 설치해야 할 수 있다.
 
