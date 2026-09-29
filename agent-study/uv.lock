@@ -6,11 +6,6 @@ resolution-markers = [
     "python_full_version < '3.14'",
 ]
 
-[manifest]
-members = [
-    "langchain-study",
-]
-
 [[package]]
 name = "aiohappyeyeballs"
 version = "2.7.1"
@@ -1592,7 +1587,7 @@ wheels = [
 [[package]]
 name = "langchain-study"
 version = "0.1.0"
-source = { virtual = "langchain" }
+source = { virtual = "." }
 dependencies = [
     { name = "ipykernel" },
     { name = "langchain" },
