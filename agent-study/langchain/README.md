@@ -10,13 +10,15 @@ LangChain·LangGraph 를 Claude 모델로 공부하고, 모든 실행을 MLflow(
 
 ## 세팅
 
+`agent-study` 폴더가 uv workspace 이고, 가상환경은 `agent-study/.venv` 하나를 같이 쓴다.
+
 ```bash
-cd "Agent Study/Langchain"
-uv sync                 # .venv 생성 + 의존성 설치
+cd agent-study/langchain
+uv sync                 # agent-study/.venv 에 의존성 설치
 cp .env.example .env    # ANTHROPIC_API_KEY 입력
 ```
 
-VS Code 에서 노트북을 열고 커널로 `.venv` 를 선택한다.
+VS Code 에서 노트북을 열고 커널로 `agent-study/.venv` 를 선택한다.
 
 ## 모델
 
