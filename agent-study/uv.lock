@@ -1587,7 +1587,7 @@ wheels = [
 [[package]]
 name = "langchain-study"
 version = "0.1.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "ipykernel" },
     { name = "langchain" },
